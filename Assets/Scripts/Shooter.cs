@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] List<GameObject> allTargetInSight = new List<GameObject>();
-    [SerializeField] private GameObject currentTarget;
+    [SerializeField] List<Attacker> allTargetInSight = new List<Attacker>();
+    [SerializeField] private Attacker currentTarget;
 
     private void Update()
     {
@@ -17,21 +17,29 @@ public class Shooter : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!allTargetInSight.Contains(other.gameObject))
+        Attacker newAttacker = other.GetComponent<Attacker>();
+        if (newAttacker)
         {
-            allTargetInSight.Add(other.gameObject);
+            if (!allTargetInSight.Contains(newAttacker))
+            {
+                allTargetInSight.Add(newAttacker);
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (allTargetInSight.Contains(other.gameObject))
+        Attacker newAttacker = other.GetComponent<Attacker>();
+        if (newAttacker)
         {
-            allTargetInSight.Remove(other.gameObject);
-            if (other.gameObject == currentTarget)
+            if (allTargetInSight.Contains(newAttacker))
             {
-                currentTarget = null;
-                GetComponent<Animator>().SetBool("isTargetInSight", false);
+                allTargetInSight.Remove(newAttacker);
+                if (newAttacker == currentTarget)
+                {
+                    currentTarget = null;
+                    GetComponent<Animator>().SetBool("isTargetInSight", false);
+                }
             }
         }
     }
@@ -52,15 +60,19 @@ public class Shooter : MonoBehaviour
         if (currentTarget)
         {
             currentTarget.GetComponent<Health>().ReduceHealth(1);
-            if (GetComponent<Animator>().speed < 3)
-            {
-                GetComponent<Animator>().speed += 0.5f;
-            }
+            //if (GetComponent<Animator>().speed < 3)
+            //{
+            //    GetComponent<Animator>().speed += 0.5f;
+            //}
 
             if (!IsTargetInSight())
             {
                 GetComponent<Animator>().SetBool("isTargetInSight", false);
             }
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("isTargetInSight", false);
         }
     }
 }

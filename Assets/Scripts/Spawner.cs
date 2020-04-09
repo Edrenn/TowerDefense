@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject attackerPrefab;
     public bool isSpawning = true;
 
+    public int TEMP_nbenemySpawn;
+
     private void Start()
     {
         StartCoroutine(StartSpawn());
@@ -23,7 +25,7 @@ public class Spawner : MonoBehaviour
             Spawn();
             yield return new WaitForSeconds(2);
             count++;
-            if (count > 2) isSpawning = false;
+            if (count > TEMP_nbenemySpawn) isSpawning = false;
         }
     }
 
