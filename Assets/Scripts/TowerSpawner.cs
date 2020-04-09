@@ -5,19 +5,34 @@ using UnityEngine;
 
 public class TowerSpawner : MonoBehaviour
 {
+    [SerializeField] GameObject BuyInterface;
     [SerializeField] Tower TowerPrefab;
     Tower currentTower;
 
     private void OnMouseDown()
     {
-        TryToBuy();
+        if (BuyInterface.activeSelf)
+        {
+            BuyInterface.SetActive(false);
+        }
+        else
+            BuyInterface.SetActive(true);
+        //TryToBuy();
     }
 
-    private void TryToBuy()
+    public void Test()
     {
+        Debug.Log("TEST");
+    }
+
+    public  void TryToBuy(Tower tower)
+    {
+        Debug.Log("Bonjour");
         CoreGame cg = FindObjectOfType<CoreGame>();
-        if (cg.CanBuy(TowerPrefab.bonePrice))
+        if (cg.CanBuy(tower.bonePrice))
         {
+            currentTower = tower;
+            Debug.Log("Selected tower : " + currentTower.name);
             cg.SpendBones(TowerPrefab.bonePrice);
             SpawnTower();
         }
