@@ -5,17 +5,28 @@ using UnityEngine;
 
 public class TowerSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject TowerPrefab;
-    GameObject currentTower;
+    [SerializeField] Tower TowerPrefab;
+    Tower currentTower;
 
     private void OnMouseDown()
     {
-        SpawnTower();
+        TryToBuy();
+    }
+
+    private void TryToBuy()
+    {
+        CoreGame cg = FindObjectOfType<CoreGame>();
+        if (cg.CanBuy(TowerPrefab.bonePrice))
+        {
+            cg.SpendBones(TowerPrefab.bonePrice);
+            SpawnTower();
+        }
     }
 
     private void SpawnTower()
     {
-        currentTower = Instantiate(TowerPrefab, transform.position, Quaternion.identity) as GameObject;
+
+        currentTower = Instantiate(TowerPrefab, transform.position, Quaternion.identity) as Tower;
         GetComponent<SpriteRenderer>().enabled = false;
 
     }

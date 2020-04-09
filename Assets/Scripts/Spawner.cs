@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     public bool isSpawning = true;
 
     public int TEMP_nbenemySpawn;
+    public int TEMP_timeBetweenSpawn;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class Spawner : MonoBehaviour
         while (isSpawning)
         {
             Spawn();
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(TEMP_timeBetweenSpawn);
             count++;
             if (count > TEMP_nbenemySpawn) isSpawning = false;
         }

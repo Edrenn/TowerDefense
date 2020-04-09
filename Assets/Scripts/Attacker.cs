@@ -8,6 +8,13 @@ public class Attacker : MonoBehaviour
     Health currentHealth;
     Vector2 currentDirection = Vector2.down;
     [SerializeField] float speed = 1f;
+    [SerializeField] int boneValue = 10;
+
+
+    private void OnDestroy()
+    {
+        FindObjectOfType<CoreGame>().AddBones(boneValue);
+    }
 
     // Update is called once per frame
     void Update()

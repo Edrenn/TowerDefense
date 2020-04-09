@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 707490311}
   - component: {fileID: 707490309}
   - component: {fileID: 707490310}
+  - component: {fileID: -3883767979745200720}
   m_Layer: 0
-  m_Name: Goblin
+  m_Name: GoblinTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,6 +106,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allTargetInSight: []
   currentTarget: {fileID: 0}
+--- !u!114 &-3883767979745200720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518792757960342941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b893664d36891414a978c85a24a10c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonePrice: 50
 --- !u!1 &3518792758711134656
 GameObject:
   m_ObjectHideFlags: 0
