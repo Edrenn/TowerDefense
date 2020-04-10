@@ -11,8 +11,13 @@ public class CoreGame : MonoBehaviour
     public int castleCurrentHP;
     [SerializeField] Text castleHPText;
 
+    [SerializeField] float[] availableGameSpeed = new float[] { 1,2,3 };
+    [SerializeField] Text changeSpeedButtonText;
+    private int currentGameSpeedIndex = 0;
+
     private void Awake()
     {
+        UpdateGameSpeedText();
         UpdateBoneText();
         UpdateLifeText();
     }
@@ -56,5 +61,21 @@ public class CoreGame : MonoBehaviour
         castleHPText.text = castleCurrentHP.ToString();
     }
     #endregion
+
+    public void ChangeGameSpeed()
+    {
+        currentGameSpeedIndex++;
+        if (currentGameSpeedIndex >= availableGameSpeed.Length)
+        {
+            currentGameSpeedIndex = 0;
+        }
+        Time.timeScale = availableGameSpeed[currentGameSpeedIndex];
+        UpdateGameSpeedText();
+    }
+
+    private void UpdateGameSpeedText()
+    {
+        changeSpeedButtonText.text = "x" + availableGameSpeed[currentGameSpeedIndex].ToString();
+    }
 
 }
