@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Attacker : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] float speed = 1f;
     [SerializeField] int boneValue = 10;
     [SerializeField] private GameObject DeathAnimation;
+    [SerializeField] private Slider HealthBar;
     public void SetMovementSpeed(float newSpeed)
     {
         speed = newSpeed;
@@ -19,11 +21,19 @@ public class Attacker : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        HealthBar.maxValue = maxHealth;
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        HealthBar.value = currentHealth <= 0 ? 0 : currentHealth;
     }
 
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        UpdateHealthBar();
         if (currentHealth <= 0)
         {
             FindObjectOfType<CoreGame>().AddBones(boneValue);
