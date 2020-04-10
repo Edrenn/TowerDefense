@@ -8,11 +8,16 @@ public class CoreGame : MonoBehaviour
     public int boneAmount;
     [SerializeField] Text boneCountText;
 
+    public int castleCurrentHP;
+    [SerializeField] Text castleHPText;
+
     private void Awake()
     {
         UpdateBoneText();
+        UpdateLifeText();
     }
 
+    #region Bones
     public void AddBones(int amount)
     {
         boneAmount += amount;
@@ -37,5 +42,19 @@ public class CoreGame : MonoBehaviour
     {
         boneCountText.text = boneAmount.ToString();
     }
+    #endregion
+
+    #region Castle
+    public void LoseHP(int amount)
+    {
+        castleCurrentHP -= amount;
+        UpdateLifeText();
+    }
+
+    private void UpdateLifeText()
+    {
+        castleHPText.text = castleCurrentHP.ToString();
+    }
+    #endregion
 
 }

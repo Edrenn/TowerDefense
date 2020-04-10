@@ -5,23 +5,32 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour
 {
-    Health currentHealth;
+    public int currentHealth;
+    public int maxHealth = 4;
     Vector2 currentDirection = Vector2.down;
     [SerializeField] float speed = 1f;
     [SerializeField] int boneValue = 10;
-    private bool giveMoney = true;
-
-    private void OnDestroy()
+    [SerializeField] private GameObject DeathAnimation;
+    public void SetMovementSpeed(float newSpeed)
     {
-        if (giveMoney)
-        {
-            FindObjectOfType<CoreGame>().AddBones(boneValue);
-        }
+        speed = newSpeed;
     }
 
-    public void SetGiveMoney(bool giveMoney)
+    private void Awake()
     {
-        this.giveMoney = giveMoney;
+        currentHealth = maxHealth;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            FindObjectOfType<CoreGame>().AddBones(boneValue);
+            Destroy(this.gameObject);
+            GameObject deathAnim = Instantiate(DeathAnimation, transform.position, Quaternion.identity) as GameObject;
+            Destroy(deathAnim, 1f);
+        }
     }
 
     // Update is called once per frame

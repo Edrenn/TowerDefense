@@ -207,6 +207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allTargetInSight: []
   currentTarget: {fileID: 0}
+  projectile: {fileID: 2003314031358533093, guid: 8d1a4c7118e859c488b5011b5a7382c0,
+    type: 3}
+  damage: 1
 --- !u!114 &2824446002171163153
 MonoBehaviour:
   m_ObjectHideFlags: 0

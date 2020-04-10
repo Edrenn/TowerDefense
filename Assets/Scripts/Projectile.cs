@@ -20,8 +20,15 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        transform.Translate(direction * speed * Time.deltaTime);
+        if (target)
+        {
+            Vector3 direction = (target.transform.position - transform.position).normalized;
+            transform.Translate(direction * speed * Time.deltaTime);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,11 +36,7 @@ public class Projectile : MonoBehaviour
         Attacker attacker = collision.GetComponent<Attacker>();
         if (attacker && attacker == target)
         {
-            Health h = attacker.GetComponent<Health>();
-            if (h)
-            {
-                h.ReduceHealth(damage);
-            }
+            attacker.TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }

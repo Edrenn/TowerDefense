@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 8169249418205867055}
   - component: {fileID: 8169249418205867049}
   - component: {fileID: 6739279892149771397}
-  - component: {fileID: -6260160083895704534}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -195,18 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe84e3c0d4eb0645bff9fb6bae75853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
---- !u!114 &-6260160083895704534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8169249418205867053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3767c5d3e53146646b4b175d1fa30553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 2
+  maxHealth: 3
+  speed: 1
+  boneValue: 10
+  DeathAnimation: {fileID: 4056552862260935272, guid: 77c65026497e75e43aecedd828ffe542,
+    type: 3}

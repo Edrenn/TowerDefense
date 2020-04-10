@@ -9,9 +9,8 @@ public class Castle : MonoBehaviour
         Attacker attacker = collision.GetComponent<Attacker>();
         if (attacker)
         {
-            attacker.SetGiveMoney(false);
+            FindObjectOfType<CoreGame>().LoseHP(1);
         }
         Destroy(collision.gameObject);
-        GetComponent<Health>().ReduceHealth(1);
     }
 }
