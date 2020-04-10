@@ -9,11 +9,19 @@ public class Attacker : MonoBehaviour
     Vector2 currentDirection = Vector2.down;
     [SerializeField] float speed = 1f;
     [SerializeField] int boneValue = 10;
-
+    private bool giveMoney = true;
 
     private void OnDestroy()
     {
-        FindObjectOfType<CoreGame>().AddBones(boneValue);
+        if (giveMoney)
+        {
+            FindObjectOfType<CoreGame>().AddBones(boneValue);
+        }
+    }
+
+    public void SetGiveMoney(bool giveMoney)
+    {
+        this.giveMoney = giveMoney;
     }
 
     // Update is called once per frame

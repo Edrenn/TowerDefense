@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] List<Attacker> allTargetInSight = new List<Attacker>();
     [SerializeField] private Attacker currentTarget;
+    [SerializeField] private Projectile projectile;
+    [SerializeField] private int damage;
 
     private void Update()
     {
@@ -59,11 +62,9 @@ public class Shooter : MonoBehaviour
     {
         if (currentTarget)
         {
-            currentTarget.GetComponent<Health>().ReduceHealth(1);
-            //if (GetComponent<Animator>().speed < 3)
-            //{
-            //    GetComponent<Animator>().speed += 0.5f;
-            //}
+            Projectile proj = Instantiate(projectile, transform.position, Quaternion.identity);
+            proj.SetTarget(currentTarget);
+            proj.SetDamage(damage);
 
             if (!IsTargetInSight())
             {
