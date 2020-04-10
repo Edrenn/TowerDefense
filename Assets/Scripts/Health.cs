@@ -15,11 +15,9 @@ public class Health : MonoBehaviour
     public void ReduceHealth(int amount)
     {
         currentHealth -= amount;
-        Debug.Log(gameObject.name + " take " + amount + " damages.");
         if (currentHealth <= 0)
         {
             Destroy(this.gameObject);
-            Debug.Log(gameObject.name + " is ded");
         }
     }
 

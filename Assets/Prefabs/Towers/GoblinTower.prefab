@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonePrice: 50
+  towerSprite: {fileID: 4723107735738678597, guid: 0d52eaf5cb18a1f4c89b1304225a1402,
+    type: 3}
 --- !u!1 &3518792758711134656
 GameObject:
   m_ObjectHideFlags: 0

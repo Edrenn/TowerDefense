@@ -6,8 +6,12 @@ using UnityEngine;
 public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject BuyInterface;
-    [SerializeField] Tower TowerPrefab;
     Tower currentTower;
+
+    private void Awake()
+    {
+        BuyInterface.SetActive(false);
+    }
 
     private void OnMouseDown()
     {
@@ -17,31 +21,24 @@ public class TowerSpawner : MonoBehaviour
         }
         else
             BuyInterface.SetActive(true);
-        //TryToBuy();
-    }
-
-    public void Test()
-    {
-        Debug.Log("TEST");
     }
 
     public  void TryToBuy(Tower tower)
     {
-        Debug.Log("Bonjour");
         CoreGame cg = FindObjectOfType<CoreGame>();
         if (cg.CanBuy(tower.bonePrice))
         {
             currentTower = tower;
-            Debug.Log("Selected tower : " + currentTower.name);
-            cg.SpendBones(TowerPrefab.bonePrice);
+            cg.SpendBones(currentTower.bonePrice);
             SpawnTower();
+            BuyInterface.SetActive(false);
         }
     }
 
     private void SpawnTower()
     {
 
-        currentTower = Instantiate(TowerPrefab, transform.position, Quaternion.identity) as Tower;
+        currentTower = Instantiate(currentTower, transform.position, Quaternion.identity) as Tower;
         GetComponent<SpriteRenderer>().enabled = false;
 
     }
