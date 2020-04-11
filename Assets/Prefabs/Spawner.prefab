@@ -43,8 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9bcdb8b0330b9489fd315c16403435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveTimer: {fileID: 0}
+  timeBetweenWaves: 5
+  currentTime: 0
   spawnDirection: 2
   attackerPrefab: {fileID: 8169249418205867053, guid: ac0129d80b5ea864f918e78848f303dc,
     type: 3}
   isSpawning: 1
-  TEMP_nbenemySpawn: 5
+  waitingForWave: 1
+  TEMP_nbenemySpawn: 3
+  TEMP_timeBetweenSpawn: 1

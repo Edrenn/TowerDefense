@@ -1542,11 +1542,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
-    - target: {fileID: 2263166350258739257, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2263166350258739255, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1604,12 +1599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2263166350258739254, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17,
         type: 3}
-      propertyPath: TEMP_nbenemySpawn
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2263166350258739254, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17,
-        type: 3}
-      propertyPath: TEMP_timeBetweenSpawn
+      propertyPath: allWavess.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2263166350258739254, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17,
@@ -1617,11 +1607,6 @@ PrefabInstance:
       propertyPath: waveTimer
       value: 
       objectReference: {fileID: 227291420}
-    - target: {fileID: 2263166350258739254, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17,
-        type: 3}
-      propertyPath: timeBetweenWaves
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c53d26cbbc11284aaf96ccfd3fc2a17, type: 3}
 --- !u!1001 &6372175904418909464
@@ -1638,6 +1623,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
+      propertyPath: mainCanvas
+      value: 
+      objectReference: {fileID: 1330700534}
+    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
+        type: 3}
       propertyPath: boneCountText
       value: 
       objectReference: {fileID: 1132331052}
@@ -1648,20 +1638,9 @@ PrefabInstance:
       objectReference: {fileID: 665562225}
     - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
-      propertyPath: loseHPAnimation
-      value: 
-      objectReference: {fileID: 1242061474915083089, guid: a6e838ec1c3b2fd488ca0e7c9384f633,
-        type: 3}
-    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
-        type: 3}
       propertyPath: changeSpeedButtonText
       value: 
       objectReference: {fileID: 1922084890}
-    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
-        type: 3}
-      propertyPath: mainCanvas
-      value: 
-      objectReference: {fileID: 1330700534}
     - target: {fileID: 6372175903282699119, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
       propertyPath: m_LocalPosition.x

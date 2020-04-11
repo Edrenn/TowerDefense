@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6372175903282699119}
   - component: {fileID: 6372175903282699118}
+  - component: {fileID: 14822849379148015}
   m_Layer: 0
   m_Name: CoreGame
   m_TagString: Untagged
@@ -43,13 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dbe91033bb8524c85f5bd2a8fbee06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCanvas: {fileID: 0}
   boneAmount: 100
   boneCountText: {fileID: 0}
   castleCurrentHP: 10
   castleHPText: {fileID: 0}
-  loseHPAnimation: {fileID: 0}
+  loseHPAnimation: {fileID: 1242061474915083089, guid: a6e838ec1c3b2fd488ca0e7c9384f633,
+    type: 3}
   availableGameSpeed:
   - 1
   - 2
   - 3
   changeSpeedButtonText: {fileID: 0}
+--- !u!114 &14822849379148015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372175903282699117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c243183d0f9dd4b97666d1bf89b865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allAvailableAttackers:
+  - {fileID: 6739279892149771397, guid: ac0129d80b5ea864f918e78848f303dc, type: 3}
+  - {fileID: 1281833281369645356, guid: 1a0af36f842b2f54b849ffb5841b86df, type: 3}

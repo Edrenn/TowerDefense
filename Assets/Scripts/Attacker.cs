@@ -8,6 +8,7 @@ public class Attacker : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth = 4;
+    public AttackerEnum enumName;
     Vector2 currentDirection = Vector2.down;
     [SerializeField] float speed = 1f;
     [SerializeField] int boneValue = 10;

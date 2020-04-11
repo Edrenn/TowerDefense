@@ -22,21 +22,30 @@ public class Spawner : MonoBehaviour
     public int TEMP_nbenemySpawn;
     public int TEMP_timeBetweenSpawn;
 
+    private DataStorage currentLevelData;
+
     private void Awake()
     {
+        currentLevelData = FindObjectOfType<DataStorage>();
         waveTimer.maxValue = timeBetweenWaves;
         allWaves = new Queue<Wave>();
-        allWaves.Enqueue(new Wave() { name = "1", nbEnemy = 1 });
-        allWaves.Enqueue(new Wave() { name = "2", nbEnemy = 2 });
-        allWaves.Enqueue(new Wave() { name = "3", nbEnemy = 3 });
-        allWaves.Enqueue(new Wave() { name = "4", nbEnemy = 4 });
-        allWaves.Enqueue(new Wave() { name = "5", nbEnemy = 5 });
+        Wave wave1 = new Wave() { allAttackers = new Queue<Attacker>(), allAttackersEnum = new Queue<AttackerEnum>() };
+        wave1.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        wave1.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        //wave1.allAttackers.Enqueue(attackerPrefab.GetComponent<Attacker>());
+        //wave1.allAttackers.Enqueue(attackerPrefab.GetComponent<Attacker>());
+        //wave1.allAttackers.Enqueue(attackerPrefab.GetComponent<Attacker>());
+        allWaves.Enqueue(wave1);
+        //Wave wave2 = new Wave() { allAttackers = new Queue<Attacker>() };
+        //wave2.allAttackers.Enqueue(attackerPrefab.GetComponent<Attacker>());
+        //allWaves.Enqueue(wave2);
     }
 
     private void Start()
     {
         waveTimer.gameObject.SetActive(false);
-        StartCoroutine(StartSpawn());
+        if (allWaves.Count > 0)
+            StartCoroutine(StartSpawn());
     }
 
     private void Update()
@@ -59,29 +68,36 @@ public class Spawner : MonoBehaviour
         while (allWaves.Count > 0)
         {
             Wave currentW = allWaves.Dequeue();
-            Debug.Log("New Wave : " + currentW.name + " : " + currentW.nbEnemy + " ennemies.");
-            isSpawning = true;
+            Debug.Log("New Wave : " + currentW.allAttackers.Count + " ennemies.");
 
-            int count = 0;
-            while (isSpawning)
+            while (currentW.allAttackersEnum.Count > 0)
             {
-                Spawn();
+                AttackerEnum newAttackerName = currentW.allAttackersEnum.Dequeue();
+                Debug.Log(newAttackerName.ToString());
+                Attacker newAttacker = currentLevelData.FindAttacker(newAttackerName);
+                if (newAttacker)
+                {
+                    Spawn(newAttacker);
+                }
                 yield return new WaitForSeconds(TEMP_timeBetweenSpawn);
-                count++;
-                if (count >= currentW.nbEnemy) isSpawning = false;
             }
-            currentTime = timeBetweenWaves;
-            waitingForWave = true;
-            waveTimer.gameObject.SetActive(true);
-            Debug.Log("Wait 5 s before next Wave");
-            yield return new WaitForSeconds(5);
+            LaunchTimer();
+            yield return new WaitForSeconds(timeBetweenWaves);
         }
     }
 
-    private void Spawn()
+    private void LaunchTimer()
     {
-        GameObject spawnedAttacker = Instantiate(attackerPrefab, transform.position, Quaternion.identity) as GameObject;
-        spawnedAttacker.GetComponent<Attacker>().SetDirection(spawnDirection);
+        currentTime = timeBetweenWaves;
+        waitingForWave = true;
+        waveTimer.gameObject.SetActive(true);
+        Debug.Log("Wait "+ timeBetweenWaves+"s before next Wave");
+    }
+
+    private void Spawn(Attacker attacker)
+    {
+        Attacker spawnedAttacker = Instantiate(attacker, transform.position, Quaternion.identity) as Attacker;
+        spawnedAttacker.SetDirection(spawnDirection);
     }
 
 }
