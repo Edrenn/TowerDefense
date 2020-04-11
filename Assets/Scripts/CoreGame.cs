@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class CoreGame : MonoBehaviour
 {
+    [SerializeField] Canvas mainCanvas;
+
     public int boneAmount;
     [SerializeField] Text boneCountText;
 
     public int castleCurrentHP;
     [SerializeField] Text castleHPText;
+    [SerializeField] GameObject loseHPAnimation;
 
     [SerializeField] float[] availableGameSpeed = new float[] { 1,2,3 };
     [SerializeField] Text changeSpeedButtonText;
@@ -54,6 +57,10 @@ public class CoreGame : MonoBehaviour
     {
         castleCurrentHP -= amount;
         UpdateLifeText();
+        GameObject loseHPAnim = Instantiate(loseHPAnimation, castleHPText.rectTransform.position, Quaternion.identity) as GameObject;
+        loseHPAnim.transform.SetParent(castleHPText.rectTransform, false);
+        Destroy(loseHPAnim, 1f);
+
     }
 
     private void UpdateLifeText()

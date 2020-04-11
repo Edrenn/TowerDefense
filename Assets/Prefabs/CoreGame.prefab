@@ -47,6 +47,7 @@ MonoBehaviour:
   boneCountText: {fileID: 0}
   castleCurrentHP: 10
   castleHPText: {fileID: 0}
+  loseHPAnimation: {fileID: 0}
   availableGameSpeed:
   - 1
   - 2
