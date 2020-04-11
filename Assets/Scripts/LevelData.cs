@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataStorage : MonoBehaviour
+public class LevelData : MonoBehaviour
 {
+    public const string ATTACKER_PARENT_GAMEOBJECT = "ATTACKERPARENT";
     [SerializeField] public List<Attacker> allAvailableAttackers;
     private Dictionary<AttackerEnum, Attacker> allAvailableAttackersDictionary;
 

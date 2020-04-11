@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,28 @@ public class CoreGame : MonoBehaviour
     [SerializeField] Text changeSpeedButtonText;
     private int currentGameSpeedIndex = 0;
 
+    List<Spawner> allSpawners;
+    GameObject spawnerParent;
+
     private void Awake()
     {
         UpdateGameSpeedText();
         UpdateBoneText();
         UpdateLifeText();
+    }
+
+    private void Start()
+    {
+        spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        allSpawners = FindObjectsOfType<Spawner>().ToList();
+    }
+
+    private void Update()
+    {
+        if (allSpawners != null && allSpawners.Count <= 0 && spawnerParent.transform.childCount == 0)
+        {
+            Debug.Log("WINNED");
+        }
     }
 
     #region Bones
@@ -60,7 +78,11 @@ public class CoreGame : MonoBehaviour
         GameObject loseHPAnim = Instantiate(loseHPAnimation, castleHPText.rectTransform.position, Quaternion.identity) as GameObject;
         loseHPAnim.transform.SetParent(castleHPText.rectTransform, false);
         Destroy(loseHPAnim, 1f);
-
+        if (castleCurrentHP <= 0)
+        {
+            Debug.Log("LOSED");
+            Time.timeScale = 0;
+        }
     }
 
     private void UpdateLifeText()
@@ -69,6 +91,7 @@ public class CoreGame : MonoBehaviour
     }
     #endregion
 
+    #region GameSpeed
     public void ChangeGameSpeed()
     {
         currentGameSpeedIndex++;
@@ -83,6 +106,12 @@ public class CoreGame : MonoBehaviour
     private void UpdateGameSpeedText()
     {
         changeSpeedButtonText.text = "x" + availableGameSpeed[currentGameSpeedIndex].ToString();
+    }
+    #endregion
+
+    public void SpawnerFinishedCall(Spawner spawner)
+    {
+        allSpawners.Remove(spawner);
     }
 
 }

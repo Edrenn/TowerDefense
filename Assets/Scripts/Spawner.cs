@@ -22,11 +22,12 @@ public class Spawner : MonoBehaviour
     public int TEMP_nbenemySpawn;
     public int TEMP_timeBetweenSpawn;
 
-    private DataStorage currentLevelData;
+    private LevelData currentLevelData;
+    private GameObject spawnerParent;
 
     private void Awake()
     {
-        currentLevelData = FindObjectOfType<DataStorage>();
+        currentLevelData = FindObjectOfType<LevelData>();
         waveTimer.maxValue = timeBetweenWaves;
         allWaves = new Queue<Wave>();
         Wave wave1 = new Wave() { allAttackers = new Queue<Attacker>(), allAttackersEnum = new Queue<AttackerEnum>() };
@@ -43,6 +44,12 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+
+        spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        if (spawnerParent == null)
+        {
+            spawnerParent = new GameObject(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        }
         waveTimer.gameObject.SetActive(false);
         if (allWaves.Count > 0)
             StartCoroutine(StartSpawn());
@@ -81,8 +88,15 @@ public class Spawner : MonoBehaviour
                 }
                 yield return new WaitForSeconds(TEMP_timeBetweenSpawn);
             }
-            LaunchTimer();
-            yield return new WaitForSeconds(timeBetweenWaves);
+            if (allWaves.Count > 0)
+            {
+                LaunchTimer();
+                yield return new WaitForSeconds(timeBetweenWaves);
+            }
+            else
+            {
+                FindObjectOfType<CoreGame>().SpawnerFinishedCall(this);
+            }
         }
     }
 
@@ -98,6 +112,7 @@ public class Spawner : MonoBehaviour
     {
         Attacker spawnedAttacker = Instantiate(attacker, transform.position, Quaternion.identity) as Attacker;
         spawnedAttacker.SetDirection(spawnDirection);
+        spawnedAttacker.transform.SetParent(spawnerParent.transform);
     }
 
 }

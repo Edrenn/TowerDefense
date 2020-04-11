@@ -1641,6 +1641,11 @@ PrefabInstance:
       propertyPath: changeSpeedButtonText
       value: 
       objectReference: {fileID: 1922084890}
+    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
+        type: 3}
+      propertyPath: castleCurrentHP
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6372175903282699119, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
       propertyPath: m_LocalPosition.x
