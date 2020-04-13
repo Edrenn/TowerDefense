@@ -8,10 +8,12 @@ public class Attacker : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth = 4;
+    [SerializeField] int boneValue = 10;
+    public int experienceValue = 10;
+
     public AttackerEnum enumName;
     Vector2 currentDirection = Vector2.down;
     [SerializeField] float speed = 1f;
-    [SerializeField] int boneValue = 10;
     [SerializeField] private GameObject DeathAnimation;
     [SerializeField] private Slider HealthBar;
     public void SetMovementSpeed(float newSpeed)
@@ -31,7 +33,12 @@ public class Attacker : MonoBehaviour
         HealthBar.value = currentHealth <= 0 ? 0 : currentHealth;
     }
 
-    public void TakeDamage(int amount)
+    /// <summary>
+    /// Inflict damage to the current attacker.
+    /// </summary>
+    /// <param name="amount">Amount of damage dealed</param>
+    /// <returns>True if he died, false if he didn't</returns>
+    public bool TakeDamage(int amount)
     {
         currentHealth -= amount;
         UpdateHealthBar();
@@ -41,7 +48,10 @@ public class Attacker : MonoBehaviour
             Destroy(this.gameObject);
             GameObject deathAnim = Instantiate(DeathAnimation, transform.position, Quaternion.identity) as GameObject;
             Destroy(deathAnim, 1f);
+            return true;
         }
+        else
+            return false;
     }
 
     // Update is called once per frame

@@ -572,8 +572,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 3
+  boneValue: 25
+  experienceValue: 20
+  enumName: 0
   speed: 1
-  boneValue: 10
   DeathAnimation: {fileID: 4056552862260935272, guid: 77c65026497e75e43aecedd828ffe542,
     type: 3}
   HealthBar: {fileID: 1795003037}

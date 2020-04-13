@@ -50,13 +50,16 @@ public class CoreGame : MonoBehaviour
         UpdateBoneText();
     }
 
-    public void SpendBones(int amount)
+    public bool SpendBones(int amount)
     {
         if (CanBuy(amount))
         {
             boneAmount -= amount;
             UpdateBoneText();
+            return true;
         }
+
+        return false;
     }
 
     public bool CanBuy(int amount)
@@ -111,6 +114,10 @@ public class CoreGame : MonoBehaviour
 
     public void SpawnerFinishedCall(Spawner spawner)
     {
+        if (allSpawners == null)
+        {
+            allSpawners = FindObjectsOfType<Spawner>().ToList();
+        }
         allSpawners.Remove(spawner);
     }
 

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Attacker target;
+    public Tower parent;
     [SerializeField] float speed = 5f;
+
+    private Attacker target;
     private int damage = 1;
 
     public void SetTarget(Attacker newTarget)
@@ -36,7 +38,11 @@ public class Projectile : MonoBehaviour
         Attacker attacker = collision.GetComponent<Attacker>();
         if (attacker && attacker == target)
         {
-            attacker.TakeDamage(damage);
+            bool died = attacker.TakeDamage(damage);
+            if (died)
+            {
+                parent.KillAnAttacker(attacker);
+            }
             Destroy(this.gameObject);
         }
     }

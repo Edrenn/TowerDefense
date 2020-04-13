@@ -47,7 +47,7 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   boneAmount: 100
   boneCountText: {fileID: 0}
-  castleCurrentHP: 10
+  castleCurrentHP: 1
   castleHPText: {fileID: 0}
   loseHPAnimation: {fileID: 1242061474915083089, guid: a6e838ec1c3b2fd488ca0e7c9384f633,
     type: 3}

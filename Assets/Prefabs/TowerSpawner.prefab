@@ -134,6 +134,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuyInterface
       objectReference: {fileID: 0}
+    - target: {fileID: 450038231281692012, guid: 14515fba72475b2489bbe974e1692559,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3792158057296227167, guid: 14515fba72475b2489bbe974e1692559,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -239,6 +244,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3632235190322742758, guid: 14515fba72475b2489bbe974e1692559,
+        type: 3}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: 719987087, guid: 1f4f724c010413248bb4dd3441772cd4,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14515fba72475b2489bbe974e1692559, type: 3}
 --- !u!1 &5105764841972414296 stripped

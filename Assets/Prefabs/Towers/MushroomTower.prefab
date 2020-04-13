@@ -210,6 +210,7 @@ MonoBehaviour:
   projectile: {fileID: 2003314031358533093, guid: 8d1a4c7118e859c488b5011b5a7382c0,
     type: 3}
   damage: 1
+  shootSpeed: 0
 --- !u!114 &2824446002171163153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b893664d36891414a978c85a24a10c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonePrice: 50
+  boneBuyPrice: 50
+  boneSellPrice: 0
   towerSprite: {fileID: 4723107735738678597, guid: ce633aaa042e9c6449431ecfc3029691,
     type: 3}
+  currentExperience: 0
+  currentLevel: 1

@@ -7,6 +7,5 @@ public class Wave : MonoBehaviour
 {
     public int nbEnemy;
 
-    public Queue<Attacker> allAttackers;
     public Queue<AttackerEnum> allAttackersEnum;
 }

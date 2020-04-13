@@ -26,10 +26,10 @@ public class TowerSpawner : MonoBehaviour
     public  void TryToBuy(Tower tower)
     {
         CoreGame cg = FindObjectOfType<CoreGame>();
-        if (cg.CanBuy(tower.bonePrice))
+        if (cg.CanBuy(tower.boneSellPrice))
         {
             currentTower = tower;
-            cg.SpendBones(currentTower.bonePrice);
+            cg.SpendBones(currentTower.boneBuyPrice);
             SpawnTower();
             BuyInterface.SetActive(false);
         }
@@ -39,7 +39,8 @@ public class TowerSpawner : MonoBehaviour
     {
 
         currentTower = Instantiate(currentTower, transform.position, Quaternion.identity) as Tower;
-        GetComponent<SpriteRenderer>().enabled = false;
+        currentTower.parentSpawner = this;
+        this.gameObject.SetActive(false);
 
     }
 }

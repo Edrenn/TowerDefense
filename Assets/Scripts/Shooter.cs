@@ -10,6 +10,18 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Attacker currentTarget;
     [SerializeField] private Projectile projectile;
     [SerializeField] private int damage;
+    [SerializeField] private float shootSpeed;
+    private Tower parent;
+
+    private void Start()
+    {
+        parent = GetComponentInParent<Tower>();
+        Animator animator = GetComponent<Animator>();
+        if (animator)
+        {
+            animator.speed = shootSpeed;
+        }
+    }
 
     private void Update()
     {
@@ -18,6 +30,7 @@ public class Shooter : MonoBehaviour
             SetCurrentTarget();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Attacker newAttacker = other.GetComponent<Attacker>();
@@ -46,16 +59,10 @@ public class Shooter : MonoBehaviour
             }
         }
     }
-
-    private void SetCurrentTarget()
+    public void Upgrade(int damageIncrease, float shootSpeedIncrease)
     {
-        currentTarget = allTargetInSight.First();
-        GetComponent<Animator>().SetBool("isTargetInSight", true);
-    }
-
-    private bool IsTargetInSight()
-    {
-        return allTargetInSight.Count > 0;
+        this.damage += damageIncrease;
+        this.shootSpeed += shootSpeedIncrease;
     }
 
     public void Fire()
@@ -65,6 +72,7 @@ public class Shooter : MonoBehaviour
             Projectile proj = Instantiate(projectile, transform.position, Quaternion.identity);
             proj.SetTarget(currentTarget);
             proj.SetDamage(damage);
+            proj.parent = parent;
 
             if (!IsTargetInSight())
             {
@@ -75,5 +83,16 @@ public class Shooter : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("isTargetInSight", false);
         }
+    }
+
+    private void SetCurrentTarget()
+    {
+        currentTarget = allTargetInSight.First();
+        GetComponent<Animator>().SetBool("isTargetInSight", true);
+    }
+
+    private bool IsTargetInSight()
+    {
+        return allTargetInSight.Count > 0;
     }
 }
