@@ -31,8 +31,12 @@ public class CoreGame : MonoBehaviour
 
     private void Start()
     {
-        spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
         allSpawners = FindObjectsOfType<Spawner>().ToList();
+        spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        if (!spawnerParent)
+        {
+            spawnerParent = new GameObject(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        }
     }
 
     private void Update()
@@ -121,4 +125,8 @@ public class CoreGame : MonoBehaviour
         allSpawners.Remove(spawner);
     }
 
+    public void SpawnNextWave()
+    {
+
+    }
 }

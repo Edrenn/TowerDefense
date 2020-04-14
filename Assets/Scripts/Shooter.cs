@@ -59,6 +59,25 @@ public class Shooter : MonoBehaviour
             }
         }
     }
+
+    public void SetIdleSpeed()
+    {
+        Animator anim = GetComponent<Animator>();
+        if (anim)
+        {
+            anim.speed = 1;
+        }
+    }
+
+    public void SetShootSpeed()
+    {
+        Animator anim = GetComponent<Animator>();
+        if (anim)
+        {
+            anim.speed = this.shootSpeed;
+        }
+    }
+
     public void Upgrade(int damageIncrease, float shootSpeedIncrease)
     {
         this.damage += damageIncrease;

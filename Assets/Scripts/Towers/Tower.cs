@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     // leveling
     public List<TowerLevel> levels;
     private int currentExperience;
+    [SerializeField] private int experienceOnHit;
     private int currentLevelIndex;
     private bool readyToUpgrade;
     private bool maxLevelReached;
@@ -19,9 +20,11 @@ public class Tower : MonoBehaviour
     public TowerSpawner parentSpawner;
 
     [SerializeField] private GameObject towerInterface;
+    [SerializeField] private TowerLevelUI towerLevelUI;
 
     private void Start()
     {
+        UpdateTowerLevelUI();
         boneSellPrice = Mathf.RoundToInt(boneBuyPrice * 0.7f);
         UpdateTowerInterface();
     }
@@ -51,6 +54,22 @@ public class Tower : MonoBehaviour
             if (currentExperience >= levels[currentLevelIndex].experienceToUpgrade)
             {
                 readyToUpgrade = true;
+                towerLevelUI.SetUpgradeVisibility(true);
+                Debug.Log("Ready to upgrade !");
+            }
+        }
+    }
+
+    public void HitAnAttacker()
+    {
+        if (!maxLevelReached && !readyToUpgrade)
+        {
+            currentExperience += experienceOnHit;
+            Debug.Log("Current Xp : " + currentExperience);
+            if (currentExperience >= levels[currentLevelIndex].experienceToUpgrade)
+            {
+                readyToUpgrade = true;
+                towerLevelUI.SetUpgradeVisibility(true);
                 Debug.Log("Ready to upgrade !");
             }
         }
@@ -68,8 +87,12 @@ public class Tower : MonoBehaviour
                 if (currentLevelIndex >= levels.Count-1)
                 {
                     maxLevelReached = true;
+                    towerLevelUI.UpdateLevel("Maxed");
                 }
+                else
+                    UpdateTowerLevelUI();
                 readyToUpgrade = false;
+                towerLevelUI.SetUpgradeVisibility(false);
                 currentExperience = 0;
                 GetComponentInChildren<Shooter>().Upgrade(1, 0.5f);
                 UpdateTowerInterface();
@@ -80,6 +103,11 @@ public class Tower : MonoBehaviour
                 Debug.Log("Can't upgrade for not enough bones or xp");
             }
         }
+    }
+
+    private void UpdateTowerLevelUI()
+    {
+        towerLevelUI.UpdateLevel((currentLevelIndex + 1).ToString());
     }
 
     private void UpdateTowerInterface()

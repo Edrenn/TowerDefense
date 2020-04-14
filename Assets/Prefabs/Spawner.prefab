@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveTimer: {fileID: 0}
-  timeBetweenWaves: 5
+  timerUI: {fileID: 0}
+  timeBetweenWaves: 10
   currentTime: 0
   spawnDirection: 2
   attackerPrefab: {fileID: 8169249418205867053, guid: ac0129d80b5ea864f918e78848f303dc,
     type: 3}
   isSpawning: 1
   waitingForWave: 1
-  TEMP_nbenemySpawn: 3
   TEMP_timeBetweenSpawn: 1

@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
 {
     #region Time
     [SerializeField] Slider waveTimer;
+    [SerializeField] GameObject timerUI;
     public float timeBetweenWaves;
     public float currentTime;
     #endregion
@@ -52,13 +53,12 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-
         spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
         if (spawnerParent == null)
         {
             spawnerParent = new GameObject(LevelData.ATTACKER_PARENT_GAMEOBJECT);
         }
-        waveTimer.gameObject.SetActive(false);
+        timerUI.SetActive(false);
         if (allWaves.Count > 0 && isSpawning)
             StartCoroutine(StartSpawn());
     }
@@ -70,9 +70,7 @@ public class Spawner : MonoBehaviour
             currentTime = currentTime - Time.deltaTime;
             if (currentTime <= 0)
             {
-                currentTime = 0;
-                waitingForWave = false;
-                waveTimer.gameObject.SetActive(false);
+                LaunchNextWave();
             }
             waveTimer.value = currentTime;
         }
@@ -97,7 +95,7 @@ public class Spawner : MonoBehaviour
             if (allWaves.Count > 0)
             {
                 LaunchTimer();
-                yield return new WaitForSeconds(timeBetweenWaves);
+                yield return new WaitUntil(() => currentTime <= 0);
             }
             else
             {
@@ -106,11 +104,28 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public void LaunchWaveBeforeTimer()
+    {
+        CoreGame coreGame = FindObjectOfType<CoreGame>();
+        if (coreGame)
+        {
+            coreGame.AddBones(Mathf.RoundToInt(currentTime * 2));
+        }
+        LaunchNextWave();
+    }
+
+    private void LaunchNextWave()
+    {
+        currentTime = 0;
+        waitingForWave = false;
+        timerUI.SetActive(false);
+    }
+
     private void LaunchTimer()
     {
         currentTime = timeBetweenWaves;
         waitingForWave = true;
-        waveTimer.gameObject.SetActive(true);
+        timerUI.SetActive(true);
         Debug.Log("Wait "+ timeBetweenWaves+"s before next Wave");
     }
 

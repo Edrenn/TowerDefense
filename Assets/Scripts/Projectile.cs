@@ -43,6 +43,8 @@ public class Projectile : MonoBehaviour
             {
                 parent.KillAnAttacker(attacker);
             }
+            else
+                parent.HitAnAttacker();
             Destroy(this.gameObject);
         }
     }
