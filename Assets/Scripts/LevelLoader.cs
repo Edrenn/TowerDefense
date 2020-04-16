@@ -28,10 +28,35 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
+    public void LoadNextLevel()
+    {
+        CoreGame cg = FindObjectOfType<CoreGame>();
+        if (cg)
+        {
+            Scene nextScene = SceneManager.GetSceneByName("Level" + cg.datas.lastUnlockLevel);
+            SceneManager.LoadScene(nextScene.name);
+        }
+    }
+
+    public void LoadLevel(int levelNumber)
+    {
+        SceneManager.LoadScene("Level" + levelNumber);
+    }
+
+    public void LoadVictoryScreen()
+    {
+        SceneManager.LoadScene("VictoryScreen");
+    }
+
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("StartScreen");
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void LoadLevelSelection()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LevelSelectionScreen");
     }
 
     public void LoadOptionsScene()

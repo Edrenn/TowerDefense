@@ -31,7 +31,10 @@ public class Tower : MonoBehaviour
 
     private void OnDestroy()
     {
-        parentSpawner.gameObject.SetActive(true);
+        if (parentSpawner != null)
+        {
+            parentSpawner.gameObject.SetActive(true);
+        }
     }
 
     private void OnMouseDown()

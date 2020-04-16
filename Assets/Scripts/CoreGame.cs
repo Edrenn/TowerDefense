@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,13 +8,17 @@ using UnityEngine.UI;
 public class CoreGame : MonoBehaviour
 {
     [SerializeField] Canvas mainCanvas;
-
+    public CoreGameData datas;
     public int boneAmount;
     [SerializeField] Text boneCountText;
+    public int currentLevel;
 
     public int castleCurrentHP;
     [SerializeField] Text castleHPText;
     [SerializeField] GameObject loseHPAnimation;
+    [SerializeField] GameObject victoryScreen;
+    bool isVictoryScreenOn = false;
+    [SerializeField] GameObject defeatScreen;
 
     [SerializeField] float[] availableGameSpeed = new float[] { 1,2,3 };
     [SerializeField] Text changeSpeedButtonText;
@@ -22,11 +27,15 @@ public class CoreGame : MonoBehaviour
     List<Spawner> allSpawners;
     GameObject spawnerParent;
 
+
     private void Awake()
     {
         UpdateGameSpeedText();
         UpdateBoneText();
         UpdateLifeText();
+        victoryScreen.SetActive(false);
+        defeatScreen.SetActive(false);
+        datas = SaveSystem.LoadGame();
     }
 
     private void Start()
@@ -41,10 +50,23 @@ public class CoreGame : MonoBehaviour
 
     private void Update()
     {
-        if (allSpawners != null && allSpawners.Count <= 0 && spawnerParent.transform.childCount == 0)
+        if (allSpawners != null && allSpawners.Count <= 0 && spawnerParent.transform.childCount == 0 && !isVictoryScreenOn)
         {
-            Debug.Log("WINNED");
+            Debug.Log("Show Victory Screen");
+            isVictoryScreenOn = true;
+            victoryScreen.SetActive(true);
+            StartCoroutine(ChangeToVictoryScreen());
+            this.datas.lastUnlockLevel = currentLevel + 1;
+            SaveSystem.SaveGame(this.datas);
         }
+    }
+
+    IEnumerator ChangeToVictoryScreen()
+    {
+        Time.timeScale = 1;
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<LevelLoader>().LoadVictoryScreen();
+
     }
 
     #region Bones
@@ -89,6 +111,7 @@ public class CoreGame : MonoBehaviour
         {
             Debug.Log("LOSED");
             Time.timeScale = 0;
+            defeatScreen.SetActive(true);
         }
     }
 
