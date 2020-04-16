@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour
     // leveling
     public List<TowerLevel> levels;
     private int currentExperience;
-    [SerializeField] private int experienceOnHit;
+    [SerializeField] public int experienceOnHit;
     private int currentLevelIndex;
     private bool readyToUpgrade;
     private bool maxLevelReached;
