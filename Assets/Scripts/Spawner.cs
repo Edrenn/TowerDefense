@@ -34,21 +34,36 @@ public class Spawner : MonoBehaviour
         wave1.allAttackersEnum.Enqueue(AttackerEnum.Knight);
         wave1.allAttackersEnum.Enqueue(AttackerEnum.Knight);
         allWaves.Enqueue(wave1);
-        //Wave wave2 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
-        //wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //allWaves.Enqueue(wave2);
+        Wave wave2 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
+        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        allWaves.Enqueue(wave2);
 
-        //Wave wave3 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
-        //wave3.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave3.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave3.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave3.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave3.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //wave3.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        //allWaves.Enqueue(wave3);
+        Wave wave3 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
+        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        allWaves.Enqueue(wave3);
+
+        Wave wave4 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        allWaves.Enqueue(wave4);
     }
 
     private void Start()
