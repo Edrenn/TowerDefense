@@ -1,11 +1,15 @@
 ﻿using Assets.Scripts.enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wave : MonoBehaviour
+[Serializable]
+public class Wave
 {
+    public int Id;
+
     public int nbEnemy;
 
-    public Queue<AttackerEnum> allAttackersEnum;
+    public AttackerEnum enemyType;
 }

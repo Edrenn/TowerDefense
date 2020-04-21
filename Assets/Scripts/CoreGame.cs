@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,11 @@ public class CoreGame : MonoBehaviour
     GameObject spawnerParent;
 
 
+    public const string ATTACKER_PARENT_GAMEOBJECT = "ATTACKERPARENT";
+    [SerializeField] public List<Attacker> allAvailableAttackers;
+    private Dictionary<AttackerEnum, Attacker> allAvailableAttackersDictionary;
+
+
     private void Awake()
     {
         UpdateGameSpeedText();
@@ -35,16 +41,21 @@ public class CoreGame : MonoBehaviour
         UpdateLifeText();
         victoryScreen.SetActive(false);
         defeatScreen.SetActive(false);
-        datas = SaveSystem.LoadGame();
+
+        allAvailableAttackersDictionary = new Dictionary<AttackerEnum, Attacker>();
+        foreach (var att in allAvailableAttackers)
+        {
+            allAvailableAttackersDictionary.Add(att.enumName, att);
+        }
     }
 
     private void Start()
     {
         allSpawners = FindObjectsOfType<Spawner>().ToList();
-        spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        spawnerParent = GameObject.Find(ATTACKER_PARENT_GAMEOBJECT);
         if (!spawnerParent)
         {
-            spawnerParent = new GameObject(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+            spawnerParent = new GameObject(ATTACKER_PARENT_GAMEOBJECT);
         }
     }
 
@@ -57,7 +68,6 @@ public class CoreGame : MonoBehaviour
             victoryScreen.SetActive(true);
             StartCoroutine(ChangeToVictoryScreen());
             this.datas.lastUnlockLevel = currentLevel + 1;
-            SaveSystem.SaveGame(this.datas);
         }
     }
 
@@ -151,5 +161,15 @@ public class CoreGame : MonoBehaviour
     public void SpawnNextWave()
     {
 
+    }
+
+    public Attacker FindAttacker(AttackerEnum attackerName)
+    {
+        if (allAvailableAttackersDictionary.ContainsKey(attackerName))
+        {
+            return allAvailableAttackersDictionary[attackerName];
+        }
+        else
+            return null;
     }
 }

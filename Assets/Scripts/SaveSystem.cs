@@ -2,77 +2,39 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Assets.Scripts;
+using System.Collections.Generic;
 
 public static class SaveSystem
 {
-    public static void SaveGame(CoreGameData data)
+    public static void SaveGeneric<T>(T objectToSave, string key)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/game.status";
-
-        using (FileStream fileStream = new FileStream(path, FileMode.Create))
-        {
-
-            formatter.Serialize(fileStream, data);
-        }
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/"+ key;
+        FileStream fileStream = new FileStream(path, FileMode.Create);
+        binaryFormatter.Serialize(fileStream, objectToSave);
+        fileStream.Close();
+        Debug.Log("Saved " + key);
     }
 
-    public static CoreGameData LoadGame()
+    public static T LoadGeneric<T>(string key)
     {
-        string path = Application.persistentDataPath + "/game.status";
+        string path = Application.persistentDataPath + "/"+ key;
         if (File.Exists(path))
         {
-            CoreGameData gameData = null;
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             FileStream fileStream = new FileStream(path, FileMode.Open);
 
-            gameData = binaryFormatter.Deserialize(fileStream) as CoreGameData;
+            T returnValue = default(T);
+            returnValue = (T)binaryFormatter.Deserialize(fileStream);
+
+
             fileStream.Close();
-            return gameData;
+            return returnValue;
         }
         else
         {
-            Debug.LogError("Can't find towers file");
-            CoreGameData gameData = new CoreGameData();
-            SaveGame(gameData);
-
-            return gameData;
-        }
-    }
-
-    public static void SaveTower(Tower tower)
-    {
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/tower.custom";
-
-        using (FileStream fileStream = new FileStream(path, FileMode.Create))
-        {
-
-            TowerData td = new TowerData(tower);
-
-            binaryFormatter.Serialize(fileStream, td);
-        }
-    }
-
-    public static TowerData LoadTower()
-    {
-        string path = Application.persistentDataPath + "/tower.custom";
-        if (File.Exists(path))
-        {
-            TowerData tower = null;
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = new FileStream(path, FileMode.Open))
-            {
-
-                tower = binaryFormatter.Deserialize(fileStream) as TowerData;
-            }
-
-            return tower;
-        }
-        else
-        {
-            Debug.LogError("Can't find towers file");
-            return null;
+            Debug.LogError("Can't find levels file");
+            return default(T);
         }
     }
 }

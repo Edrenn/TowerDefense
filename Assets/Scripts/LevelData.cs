@@ -1,30 +1,18 @@
 ﻿using Assets.Scripts.enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelData : MonoBehaviour
+[Serializable]
+public class LevelData
 {
-    public const string ATTACKER_PARENT_GAMEOBJECT = "ATTACKERPARENT";
-    [SerializeField] public List<Attacker> allAvailableAttackers;
-    private Dictionary<AttackerEnum, Attacker> allAvailableAttackersDictionary;
+    public const string DATAKEY = "Levels"; 
 
-    private void Awake()
-    {
-        allAvailableAttackersDictionary = new Dictionary<AttackerEnum, Attacker>();
-        foreach (var att in allAvailableAttackers)
-        {
-            allAvailableAttackersDictionary.Add(att.enumName, att);
-        }
-    }
+    public int Id;
+    public bool isUnlocked { get; set; }
+    public int currentStars { get; set; }
+    public int Index { get; set; }
 
-    public Attacker FindAttacker(AttackerEnum attackerName)
-    {
-        if (allAvailableAttackersDictionary.ContainsKey(attackerName))
-        {
-            return allAvailableAttackersDictionary[attackerName];
-        }
-        else
-            return null;
-    }
+    public List<Wave> Waves { get; set; }
 }

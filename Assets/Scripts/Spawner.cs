@@ -22,56 +22,30 @@ public class Spawner : MonoBehaviour
 
     public int TEMP_timeBetweenSpawn;
 
-    private LevelData currentLevelData;
+    private CoreGame currentLevelData;
     private GameObject spawnerParent;
 
     private void Awake()
     {
-        currentLevelData = FindObjectOfType<LevelData>();
+        currentLevelData = FindObjectOfType<CoreGame>();
         waveTimer.maxValue = timeBetweenWaves;
         allWaves = new Queue<Wave>();
-        Wave wave1 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
-        wave1.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave1.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        Wave wave1 = new Wave() { enemyType = AttackerEnum.Knight , nbEnemy = 5 };
         allWaves.Enqueue(wave1);
-        Wave wave2 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
-        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave2.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        Wave wave2 = new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 5 };
         allWaves.Enqueue(wave2);
-
-        Wave wave3 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
-        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
-        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
-        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
-        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
-        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
-        wave3.allAttackersEnum.Enqueue(AttackerEnum.Ranger);
+        Wave wave3 = new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 10 };
         allWaves.Enqueue(wave3);
-
-        Wave wave4 = new Wave() { allAttackersEnum = new Queue<AttackerEnum>() };
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
-        wave4.allAttackersEnum.Enqueue(AttackerEnum.Knight);
+        Wave wave4 = new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 };
         allWaves.Enqueue(wave4);
     }
 
     private void Start()
     {
-        spawnerParent = GameObject.Find(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+        spawnerParent = GameObject.Find(CoreGame.ATTACKER_PARENT_GAMEOBJECT);
         if (spawnerParent == null)
         {
-            spawnerParent = new GameObject(LevelData.ATTACKER_PARENT_GAMEOBJECT);
+            spawnerParent = new GameObject(CoreGame.ATTACKER_PARENT_GAMEOBJECT);
         }
         timerUI.SetActive(false);
         if (allWaves.Count > 0 && isSpawning)
@@ -96,15 +70,15 @@ public class Spawner : MonoBehaviour
         while (allWaves.Count > 0)
         {
             Wave currentW = allWaves.Dequeue();
-
-            while (currentW.allAttackersEnum.Count > 0)
+            int spawnCount = 0;
+            while (spawnCount < currentW.nbEnemy)
             {
-                AttackerEnum newAttackerName = currentW.allAttackersEnum.Dequeue();
-                Attacker newAttacker = currentLevelData.FindAttacker(newAttackerName);
+                Attacker newAttacker = currentLevelData.FindAttacker((AttackerEnum)currentW.enemyType);
                 if (newAttacker)
                 {
                     Spawn(newAttacker);
                 }
+                spawnCount++;
                 yield return new WaitForSeconds(TEMP_timeBetweenSpawn);
             }
             if (allWaves.Count > 0)

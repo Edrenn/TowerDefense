@@ -10,5 +10,6 @@ namespace Assets.Scripts
     public class CoreGameData
     {
         public int lastUnlockLevel;
+        
     }
 }

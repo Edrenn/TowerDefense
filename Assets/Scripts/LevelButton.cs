@@ -7,7 +7,19 @@ public class LevelButton : MonoBehaviour
 {
     public int levelIndex;
 
-    public void SetInteractable(bool isInteractable)
+    public void SetLevelData(LevelData newLvl)
+    {
+        levelIndex = newLvl.Index;
+        GetComponent<Text>().text = levelIndex.ToString();
+        SetLocked(newLvl.isUnlocked);
+    }
+
+    public void LoadLevel()
+    {
+        FindObjectOfType<LevelLoader>().LoadLevel(levelIndex);
+    }
+
+    public void SetLocked(bool isInteractable)
     {
         GetComponent<Button>().interactable = isInteractable;
     }
