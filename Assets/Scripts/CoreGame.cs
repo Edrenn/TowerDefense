@@ -36,6 +36,7 @@ public class CoreGame : MonoBehaviour
 
     private void Awake()
     {
+        datas = SaveSystem.LoadGeneric<CoreGameData>(CoreGameData.DATAKEY);
         UpdateGameSpeedText();
         UpdateBoneText();
         UpdateLifeText();
@@ -83,6 +84,12 @@ public class CoreGame : MonoBehaviour
     public void AddBones(int amount)
     {
         boneAmount += amount;
+        UpdateBoneText();
+    }
+
+    public void AddBonesByKill(int amount)
+    {
+        boneAmount += Mathf.RoundToInt(amount * (1 + (datas.killIncomeBonus/100)));
         UpdateBoneText();
     }
 

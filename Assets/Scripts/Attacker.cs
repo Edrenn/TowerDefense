@@ -44,7 +44,7 @@ public class Attacker : MonoBehaviour
         UpdateHealthBar();
         if (currentHealth <= 0)
         {
-            FindObjectOfType<CoreGame>().AddBones(boneValue);
+            FindObjectOfType<CoreGame>().AddBonesByKill(boneValue);
             Destroy(this.gameObject);
             GameObject deathAnim = Instantiate(DeathAnimation, transform.position, Quaternion.identity) as GameObject;
             Destroy(deathAnim, 1f);

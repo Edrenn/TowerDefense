@@ -32,6 +32,14 @@ public class LevelManager : MonoBehaviour
 
     public void Save()
     {
+        //CoreGameData coreGameData = new CoreGameData();
+        //coreGameData.lastUnlockLevel = 1;
+        //coreGameData.currentBoneUpgradeIndex = 0;
+        //SaveSystem.SaveGeneric<CoreGameData>(coreGameData,CoreGameData.DATAKEY);
+
+        
+        
+        /*
         List<LevelData> levels = new List<LevelData>();
         levels.Add(new LevelData()
         {
@@ -73,23 +81,12 @@ public class LevelManager : MonoBehaviour
             new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 20 }
             }
         });
-
-        SaveSystem.SaveGeneric<List<LevelData>>(levels,LevelData.DATAKEY);
-        //data.lastUnlockLevel = lastLevelUnlocked;
-        //SaveSystem.SaveGame(data);
+        
+        SaveSystem.SaveGeneric<List<LevelData>>(levels,LevelData.DATAKEY);*/
     }
 
     public void ResetData()
     {
-        lastLevelUnlocked = 1;
-        Save();
-        data.lastUnlockLevel = 1;
-        foreach (LevelButton but in FindObjectsOfType<LevelButton>())
-        {
-            if (but.levelIndex > data.lastUnlockLevel)
-            {
-                but.SetLocked(false);
-            }
-        }
+       
     }
 }

@@ -1,22 +1,31 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
-    public int levelIndex;
+    private LevelData selectedLevel;
 
     public void SetLevelData(LevelData newLvl)
     {
-        levelIndex = newLvl.Index;
-        GetComponent<Text>().text = levelIndex.ToString();
+        selectedLevel = newLvl;
+        GetComponent<Text>().text = selectedLevel.Index.ToString();
         SetLocked(newLvl.isUnlocked);
     }
 
     public void LoadLevel()
     {
-        FindObjectOfType<LevelLoader>().LoadLevel(levelIndex);
+        DataConveyer dataConveyer = FindObjectOfType<DataConveyer>();
+        if (dataConveyer == null)
+        {
+            GameObject newDataConveyer = new GameObject("DataConveyer");
+            newDataConveyer.AddComponent(typeof(DataConveyer));
+            dataConveyer = newDataConveyer.GetComponent<DataConveyer>();
+        }
+        dataConveyer.currentLevelData = selectedLevel;
+        FindObjectOfType<LevelLoader>().LoadLevel(selectedLevel.Index);
     }
 
     public void SetLocked(bool isInteractable)

@@ -9,7 +9,13 @@ namespace Assets.Scripts
     [Serializable]
     public class CoreGameData
     {
+        public const string DATAKEY = "GameDatas";
+
         public int lastUnlockLevel;
+
+        public float killIncomeBonus;
+        public int maxBoneUpgrade;
+        public int currentBoneUpgradeIndex;
         
     }
 }
