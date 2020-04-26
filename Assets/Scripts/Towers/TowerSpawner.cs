@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject BuyInterface;
+    [SerializeField] GameObject Btn;
+
     Tower currentTower;
 
     private void Awake()
@@ -32,6 +35,16 @@ public class TowerSpawner : MonoBehaviour
             cg.SpendBones(currentTower.boneBuyPrice);
             SpawnTower();
             BuyInterface.SetActive(false);
+        }
+    }
+
+    public void SetAvailableTowers(List<Tower> towers)
+    {
+        foreach (var tower in towers)
+        {
+            GameObject gameObject = Instantiate(Btn);
+            gameObject.GetComponent<BuyTowerButton>().SetTowerData(tower);
+            gameObject.transform.SetParent(BuyInterface.transform, false);
         }
     }
 

@@ -34,6 +34,9 @@ public class CoreGame : MonoBehaviour
     private Dictionary<AttackerEnum, Attacker> allAvailableAttackersDictionary;
 
 
+    // TEMP
+    public Tower towerPrefab;
+
     private void Awake()
     {
         datas = SaveSystem.LoadGeneric<CoreGameData>(CoreGameData.DATAKEY);
@@ -47,6 +50,19 @@ public class CoreGame : MonoBehaviour
         foreach (var att in allAvailableAttackers)
         {
             allAvailableAttackersDictionary.Add(att.enumName, att);
+        }
+
+        List<Tower> towers = new List<Tower>
+        {
+            towerPrefab,
+            towerPrefab,
+            towerPrefab
+        };
+
+        var towerSpawners = FindObjectsOfType<TowerSpawner>();
+        foreach (var tower in towerSpawners)
+        {
+            tower.SetAvailableTowers(towers);
         }
     }
 

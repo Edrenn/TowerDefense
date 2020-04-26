@@ -7,17 +7,6 @@ public class BuyTowerButton : MonoBehaviour
 {
     [SerializeField] Tower tower;
 
-    private void Awake()
-    {
-        GetComponentInChildren<Text>().text = tower.boneBuyPrice.ToString();
-        GetComponentInChildren<SpriteRenderer>().sprite = tower.towerSprite;
-    }
-
-    private void OnMouseDown()
-    {
-        SelectTower();
-    }
-
     public void SelectTower()
     {
         Debug.Log("You cliked on : " + gameObject.name);
@@ -26,5 +15,12 @@ public class BuyTowerButton : MonoBehaviour
         {
             ts.TryToBuy(tower);
         }
+    }
+
+    public void SetTowerData(Tower newTower)
+    {
+        tower = newTower;
+        GetComponentInChildren<Text>().text = tower.boneBuyPrice.ToString();
+        GetComponentInChildren<Image>().sprite = tower.towerSprite;
     }
 }
