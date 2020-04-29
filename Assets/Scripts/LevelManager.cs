@@ -2,6 +2,7 @@
 using Assets.Scripts.enums;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log(Application.persistentDataPath);
         HorizontalLayoutGroup hlg = FindObjectOfType<HorizontalLayoutGroup>();
-        allLevels = SaveSystem.LoadGeneric<List<LevelData>>(LevelData.DATAKEY);
+        allLevels = FindObjectOfType<DataConveyer>().allLevels.Values.ToList();
         if (allLevels != null)
         {
             foreach (var lvl in allLevels)
@@ -29,16 +30,15 @@ public class LevelManager : MonoBehaviour
 
     }
 
-
     public void Save()
     {
         //CoreGameData coreGameData = new CoreGameData();
         //coreGameData.lastUnlockLevel = 1;
         //SaveSystem.SaveGeneric<CoreGameData>(coreGameData, CoreGameData.DATAKEY);
 
-        List<TowerData> towerDatas = new List<TowerData>();
-        towerDatas.Add(new TowerData("GoblinTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 2, 10, 3));
-        SaveSystem.SaveGeneric(towerDatas, TowerData.DATAKEY);
+        //List<TowerData> towerDatas = new List<TowerData>();
+        //towerDatas.Add(new TowerData("GoblinTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 2, 10, 3));
+        //SaveSystem.SaveGeneric(towerDatas, TowerData.DATAKEY);
 
         /*
         List<LevelData> levels = new List<LevelData>();

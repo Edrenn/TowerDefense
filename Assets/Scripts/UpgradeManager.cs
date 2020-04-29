@@ -75,6 +75,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void SaveAndReturn()
     {
+        FindObjectOfType<DataConveyer>().gameDatas = gameDatas;
         SaveSystem.SaveGeneric<CoreGameData>(gameDatas, CoreGameData.DATAKEY);
         FindObjectOfType<LevelLoader>().LoadLevelSelection();
     }

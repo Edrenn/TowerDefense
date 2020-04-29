@@ -11,21 +11,26 @@ public class CoreGame : MonoBehaviour
 {
     [SerializeField] Canvas mainCanvas;
     public CoreGameData datas;
+    // bones
     public int boneAmount;
     [SerializeField] Text boneCountText;
     public int currentLevel;
-    public Dictionary<string,Tower> availableTowers;
-
-    public int castleCurrentHP;
+    // castle hp
     [SerializeField] Text castleHPText;
+    public int castleCurrentHP;
+
+    // Win lose Screen
     [SerializeField] GameObject loseHPAnimation;
     [SerializeField] GameObject victoryScreen;
     bool isVictoryScreenOn = false;
     [SerializeField] GameObject defeatScreen;
 
-    [SerializeField] float[] availableGameSpeed = new float[] { 1,2,3 };
+    // Speed
+    [SerializeField] float[] availableGameSpeed = new float[] { 1, 2, 3 };
     [SerializeField] Text changeSpeedButtonText;
     private int currentGameSpeedIndex = 0;
+    // Towers
+    public Dictionary<string,Tower> availableTowers;
 
     List<Spawner> allSpawners;
     GameObject spawnerParent;
@@ -41,7 +46,7 @@ public class CoreGame : MonoBehaviour
 
     private void Awake()
     {
-        datas = SaveSystem.LoadGeneric<CoreGameData>(CoreGameData.DATAKEY);
+        datas = FindObjectOfType<DataConveyer>().gameDatas;
         UpdateGameSpeedText();
         UpdateBoneText();
         UpdateLifeText();
@@ -70,11 +75,7 @@ public class CoreGame : MonoBehaviour
     {
         if (allSpawners != null && allSpawners.Count <= 0 && spawnerParent.transform.childCount == 0 && !isVictoryScreenOn)
         {
-            Debug.Log("Show Victory Screen");
-            isVictoryScreenOn = true;
-            victoryScreen.SetActive(true);
-            StartCoroutine(ChangeToVictoryScreen());
-            this.datas.lastUnlockLevel = currentLevel + 1;
+            OnWin();
         }
     }
 
@@ -166,7 +167,7 @@ public class CoreGame : MonoBehaviour
     private void InitializeTowers()
     {
         availableTowers = new Dictionary<string, Tower>();
-        List<TowerData> towerDatas = SaveSystem.LoadGeneric<List<TowerData>>(TowerData.DATAKEY);
+        List<TowerData> towerDatas = FindObjectOfType<DataConveyer>().allTowerDatas;
 
         if (towerDatas != null && towerDatas.Count > 0)
         {
@@ -195,6 +196,15 @@ public class CoreGame : MonoBehaviour
         return null;
     }
     #endregion
+
+    public void OnWin()
+    {
+        Debug.Log("Show Victory Screen");
+        isVictoryScreenOn = true;
+        victoryScreen.SetActive(true);
+        StartCoroutine(ChangeToVictoryScreen());
+    }
+
     public void SpawnerFinishedCall(Spawner spawner)
     {
         if (allSpawners == null)

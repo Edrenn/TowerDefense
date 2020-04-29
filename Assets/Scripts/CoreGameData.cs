@@ -11,8 +11,6 @@ namespace Assets.Scripts
     {
         public const string DATAKEY = "GameDatas";
 
-        public int lastUnlockLevel;
-
         public float killIncomeBonus;
         public int maxBoneUpgrade;
         public int currentBoneUpgradeIndex;

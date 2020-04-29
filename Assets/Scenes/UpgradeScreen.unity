@@ -3546,7 +3546,7 @@ MonoBehaviour:
     currentTowerShootSpeedUpgradeIndex: 0
   boneUpgrade: {fileID: 1151093804}
   damageUpgrade: {fileID: 1062261778}
-  shootSpeedUpgrade: {fileID: 0}
+  shootSpeedUpgrade: {fileID: 89103946}
 --- !u!4 &1457719058
 Transform:
   m_ObjectHideFlags: 0

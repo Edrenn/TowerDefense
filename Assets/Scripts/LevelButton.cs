@@ -24,6 +24,7 @@ public class LevelButton : MonoBehaviour
             newDataConveyer.AddComponent(typeof(DataConveyer));
             dataConveyer = newDataConveyer.GetComponent<DataConveyer>();
         }
+
         dataConveyer.currentLevelData = selectedLevel;
         FindObjectOfType<LevelLoader>().LoadLevel(selectedLevel.Index);
     }

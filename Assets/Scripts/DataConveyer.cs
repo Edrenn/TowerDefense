@@ -12,6 +12,13 @@ namespace Assets.Scripts
         public LevelData currentLevelData { get; set; }
         public CoreGameData gameDatas { get; set; }
 
+        /// <summary>
+        /// All levels with their id as key
+        /// </summary>
+        public Dictionary<int,LevelData> allLevels { get; set; }
+
+        public List<TowerData> allTowerDatas { get; set; }
+
         private void Awake()
         {
             DontDestroyOnLoad(this);

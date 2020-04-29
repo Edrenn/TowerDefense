@@ -28,14 +28,10 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    public void LoadNextLevel()
+    public void LoadNextLevel(int currentSceneId)
     {
-        CoreGame cg = FindObjectOfType<CoreGame>();
-        if (cg)
-        {
-            Scene nextScene = SceneManager.GetSceneByName("Level" + cg.datas.lastUnlockLevel);
-            SceneManager.LoadScene(nextScene.name);
-        }
+        Scene nextScene = SceneManager.GetSceneByName("Level" + currentSceneId+1);
+        SceneManager.LoadScene(nextScene.name);
     }
 
     public void LoadLevel(int levelNumber)
@@ -53,6 +49,7 @@ public class LevelLoader : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
+
     public void LoadLevelSelection()
     {
         Time.timeScale = 1;
@@ -63,6 +60,16 @@ public class LevelLoader : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("OptionsScreen");
+    }
+
+    public void LoadUpgradeScene()
+    {
+        SceneManager.LoadScene("UpgradeScreen");
+    }
+
+    public void LoadEndGameScene()
+    {
+        SceneManager.LoadScene("EndGameScreen");
     }
 
     public void ReloadCurrentScene()
