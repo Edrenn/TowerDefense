@@ -9,8 +9,6 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] GameObject BuyInterface;
     [SerializeField] GameObject Btn;
 
-    Tower currentTower;
-
     private void Awake()
     {
         BuyInterface.SetActive(false);
@@ -26,14 +24,14 @@ public class TowerSpawner : MonoBehaviour
             BuyInterface.SetActive(true);
     }
 
-    public  void TryToBuy(Tower tower)
+    public void TryToBuy(int price, string towerName)
     {
         CoreGame cg = FindObjectOfType<CoreGame>();
-        if (cg.CanBuy(tower.boneSellPrice))
+        if (cg.CanBuy(price))
         {
-            currentTower = tower;
-            cg.SpendBones(currentTower.boneBuyPrice);
-            SpawnTower();
+            Tower towerToSpawn = FindObjectOfType<CoreGame>().FindTowerByName(towerName);
+            cg.SpendBones(price);
+            SpawnTower(towerToSpawn);
             BuyInterface.SetActive(false);
         }
     }
@@ -43,15 +41,14 @@ public class TowerSpawner : MonoBehaviour
         foreach (var tower in towers)
         {
             GameObject gameObject = Instantiate(Btn);
-            gameObject.GetComponent<BuyTowerButton>().SetTowerData(tower);
+            gameObject.GetComponent<BuyTowerButton>().SetTowerData(tower.name,tower.boneBuyPrice, tower.towerSprite);
             gameObject.transform.SetParent(BuyInterface.transform, false);
         }
     }
 
-    private void SpawnTower()
+    private void SpawnTower(Tower towerToSpawn)
     {
-
-        currentTower = Instantiate(currentTower, transform.position, Quaternion.identity) as Tower;
+        Tower currentTower = Instantiate(towerToSpawn, transform.position, Quaternion.identity) as Tower;
         currentTower.parentSpawner = this;
         this.gameObject.SetActive(false);
 

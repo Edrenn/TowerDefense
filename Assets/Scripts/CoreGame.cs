@@ -13,6 +13,7 @@ public class CoreGame : MonoBehaviour
     public int boneAmount;
     [SerializeField] Text boneCountText;
     public int currentLevel;
+    public Dictionary<string,Tower> availableTowers;
 
     public int castleCurrentHP;
     [SerializeField] Text castleHPText;
@@ -51,19 +52,7 @@ public class CoreGame : MonoBehaviour
         {
             allAvailableAttackersDictionary.Add(att.enumName, att);
         }
-
-        List<Tower> towers = new List<Tower>
-        {
-            towerPrefab,
-            towerPrefab,
-            towerPrefab
-        };
-
-        var towerSpawners = FindObjectsOfType<TowerSpawner>();
-        foreach (var tower in towerSpawners)
-        {
-            tower.SetAvailableTowers(towers);
-        }
+        InitializeTowers();
     }
 
     private void Start()
@@ -172,6 +161,38 @@ public class CoreGame : MonoBehaviour
     }
     #endregion
 
+    #region Towers
+    private void InitializeTowers()
+    {
+        availableTowers = new Dictionary<string, Tower>();
+        List<TowerData> towerDatas = SaveSystem.LoadGeneric<List<TowerData>>(TowerData.DATAKEY);
+
+        if (towerDatas != null && towerDatas.Count > 0)
+        {
+            foreach (var towerData in towerDatas)
+            {
+                Tower newTower = (Tower)Resources.Load("TowersPrefab/"+towerData.towerName, typeof(Tower));
+                newTower.SetTowerData(towerData);
+                availableTowers.Add(towerData.towerName, newTower);
+            }
+        }
+
+        var towerSpawners = FindObjectsOfType<TowerSpawner>();
+        foreach (var tower in towerSpawners)
+        {
+            tower.SetAvailableTowers(availableTowers.Values.ToList());
+        }
+    }
+    public Tower FindTowerByName(string towerName)
+    {
+        if (availableTowers.ContainsKey(towerName))
+        {
+            return availableTowers[towerName];
+        }
+
+        return null;
+    }
+    #endregion
     public void SpawnerFinishedCall(Spawner spawner)
     {
         if (allSpawners == null)
@@ -195,4 +216,5 @@ public class CoreGame : MonoBehaviour
         else
             return null;
     }
+
 }

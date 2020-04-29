@@ -22,6 +22,11 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject towerInterface;
     [SerializeField] private TowerLevelUI towerLevelUI;
 
+    public Tower()
+    {
+
+    }
+
     private void Start()
     {
         UpdateTowerLevelUI();
@@ -46,6 +51,20 @@ public class Tower : MonoBehaviour
         }
         else
             towerInterface.SetActive(true);
+    }
+
+    public void SetTowerData(TowerData datas)
+    {
+        boneBuyPrice = datas.boneBuyPrice;
+        boneSellPrice = Mathf.RoundToInt(datas.boneBuyPrice * 0.7f);
+        levels = datas.levels;
+        experienceOnHit = datas.experienceOnHit;
+
+        Shooter shooterComp = GetComponentInChildren<Shooter>();
+        shooterComp.InitDamage(datas.damage);
+        shooterComp.InitShootSpeed(datas.shotSpeed);
+        shooterComp.InitRange(datas.towerRange);
+
     }
 
     public void KillAnAttacker(Attacker target)

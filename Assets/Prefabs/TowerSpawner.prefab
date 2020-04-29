@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuyInterface
       objectReference: {fileID: 0}
+    - target: {fileID: 335124445263726037, guid: 41e334b3eb03c4a4087fee1c229b22de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 335124445263726036, guid: 41e334b3eb03c4a4087fee1c229b22de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -240,15 +245,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 335124445263726033, guid: 41e334b3eb03c4a4087fee1c229b22de,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 335124445263726034, guid: 41e334b3eb03c4a4087fee1c229b22de,
         type: 3}
       propertyPath: m_Padding.m_Left
       value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 335124445263726033, guid: 41e334b3eb03c4a4087fee1c229b22de,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41e334b3eb03c4a4087fee1c229b22de, type: 3}

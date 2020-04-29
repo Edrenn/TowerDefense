@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class BuyTowerButton : MonoBehaviour
 {
-    [SerializeField] Tower tower;
-
+    private string towerName;
+    private int price;
+    private Sprite sprite;
     public void SelectTower()
     {
         Debug.Log("You cliked on : " + gameObject.name);
         TowerSpawner ts = GetComponentInParent<TowerSpawner>();
         if (ts)
         {
-            ts.TryToBuy(tower);
+            ts.TryToBuy(price, towerName);
         }
     }
 
-    public void SetTowerData(Tower newTower)
+    public void SetTowerData(string _towerName, int _price, Sprite _sprite)
     {
-        tower = newTower;
-        GetComponentInChildren<Text>().text = tower.boneBuyPrice.ToString();
-        GetComponentInChildren<Image>().sprite = tower.towerSprite;
+        towerName = _towerName;
+        price = _price;
+        sprite = _sprite;
+        GetComponentInChildren<Text>().text = price.ToString();
+        GetComponentInChildren<Image>().sprite = sprite;
     }
 }

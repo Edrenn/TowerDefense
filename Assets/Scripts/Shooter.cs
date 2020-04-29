@@ -11,6 +11,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Projectile projectile;
     [SerializeField] private int damage;
     [SerializeField] private float shootSpeed;
+    private float range;
     private Tower parent;
 
     private void Start()
@@ -102,6 +103,23 @@ public class Shooter : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("isTargetInSight", false);
         }
+    }
+
+    public void InitDamage(int damage)
+    {
+        this.damage = damage;
+    }
+
+    public void InitShootSpeed(float _shootSpeed)
+    {
+        shootSpeed = _shootSpeed;
+    }
+
+    public void InitRange(float _range)
+    {
+        range = _range;
+        CircleCollider2D circleCollider2D = GetComponent<CircleCollider2D>();
+        circleCollider2D.radius = range;
     }
 
     private void SetCurrentTarget()
