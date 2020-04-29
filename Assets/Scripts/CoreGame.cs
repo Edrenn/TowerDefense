@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.enums;
+using Assets.Scripts.Extension;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,7 +95,7 @@ public class CoreGame : MonoBehaviour
 
     public void AddBonesByKill(int amount)
     {
-        boneAmount += Mathf.RoundToInt(amount * (1 + (datas.killIncomeBonus/100)));
+        boneAmount += amount.AddPercentageCoef(datas.killIncomeBonus);
         UpdateBoneText();
     }
 
@@ -173,6 +174,7 @@ public class CoreGame : MonoBehaviour
             {
                 Tower newTower = (Tower)Resources.Load("TowersPrefab/"+towerData.towerName, typeof(Tower));
                 newTower.SetTowerData(towerData);
+                newTower.SetTowerBonus(towerData.damage.AddPercentageCoef(datas.towerDamageBonus), towerData.shotSpeed.AddPercentageCoef(datas.towerDamageBonus));
                 availableTowers.Add(towerData.towerName, newTower);
             }
         }

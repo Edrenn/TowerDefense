@@ -53,17 +53,27 @@ public class Tower : MonoBehaviour
             towerInterface.SetActive(true);
     }
 
-    public void SetTowerData(TowerData datas)
+    public void SetTowerData(TowerData _towerDatas)
     {
-        boneBuyPrice = datas.boneBuyPrice;
-        boneSellPrice = Mathf.RoundToInt(datas.boneBuyPrice * 0.7f);
-        levels = datas.levels;
-        experienceOnHit = datas.experienceOnHit;
+        boneBuyPrice = _towerDatas.boneBuyPrice;
+        boneSellPrice = Mathf.RoundToInt(_towerDatas.boneBuyPrice * 0.7f);
+        levels = _towerDatas.levels;
+        experienceOnHit = _towerDatas.experienceOnHit;
 
         Shooter shooterComp = GetComponentInChildren<Shooter>();
-        shooterComp.InitDamage(datas.damage);
-        shooterComp.InitShootSpeed(datas.shotSpeed);
-        shooterComp.InitRange(datas.towerRange);
+        shooterComp.InitDamage(_towerDatas.damage);
+        shooterComp.InitShootSpeed(_towerDatas.shotSpeed);
+        shooterComp.InitRange(_towerDatas.towerRange);
+
+    }
+
+    public void SetTowerBonus(int newDamages, float newShootSpeed)
+    {
+        Shooter shooterComp = GetComponentInChildren<Shooter>();
+        if (newDamages > 0)
+            shooterComp.InitDamage(newDamages);
+        if (newShootSpeed > 0)
+            shooterComp.InitShootSpeed(newShootSpeed);
 
     }
 

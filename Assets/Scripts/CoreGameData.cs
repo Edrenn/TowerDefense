@@ -16,6 +16,14 @@ namespace Assets.Scripts
         public float killIncomeBonus;
         public int maxBoneUpgrade;
         public int currentBoneUpgradeIndex;
-        
+
+        public int towerDamageBonus;
+        public int maxTowerDamageUpgrade;
+        public int currentTowerDamageUpgradeIndex;
+
+        public int towerShootSpeedBonus;
+        public int maxTowerShootSpeedUpgrade;
+        public int currentTowerShootSpeedUpgradeIndex;
+
     }
 }

@@ -34,13 +34,10 @@ public class LevelManager : MonoBehaviour
     {
         //CoreGameData coreGameData = new CoreGameData();
         //coreGameData.lastUnlockLevel = 1;
-        //coreGameData.currentBoneUpgradeIndex = 0;
-        //SaveSystem.SaveGeneric<CoreGameData>(coreGameData,CoreGameData.DATAKEY);
+        //SaveSystem.SaveGeneric<CoreGameData>(coreGameData, CoreGameData.DATAKEY);
 
         List<TowerData> towerDatas = new List<TowerData>();
-        towerDatas.Add(new TowerData("GoblinTower",50,2,new List<TowerLevel>() {new TowerLevel(10,0,50) },2,1,3));
-        //towerDatas.Add(new TowerData(20));
-        //towerDatas.Add(new TowerData(30));
+        towerDatas.Add(new TowerData("GoblinTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 2, 10, 3));
         SaveSystem.SaveGeneric(towerDatas, TowerData.DATAKEY);
 
         /*
