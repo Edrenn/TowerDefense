@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UpgradeScreen.unity
     guid: 1e1d393dcb4009f4da111615008de049
+  - enabled: 1
+    path: Assets/Scenes/EndGameScreen.unity
+    guid: a63458bafe4a3ae40b5b20a3f4060b47
   m_configObjects: {}

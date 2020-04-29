@@ -8,6 +8,10 @@ public class Tower : MonoBehaviour
     public int boneBuyPrice;
     public int boneSellPrice;
 
+    public string towerName;
+
+    public float range;
+
     // leveling
     public List<TowerLevel> levels;
     private int currentExperience;
@@ -59,6 +63,8 @@ public class Tower : MonoBehaviour
         boneSellPrice = Mathf.RoundToInt(_towerDatas.boneBuyPrice * 0.7f);
         levels = _towerDatas.levels;
         experienceOnHit = _towerDatas.experienceOnHit;
+        range = _towerDatas.towerRange;
+        towerName = _towerDatas.towerName;
 
         Shooter shooterComp = GetComponentInChildren<Shooter>();
         shooterComp.InitDamage(_towerDatas.damage);

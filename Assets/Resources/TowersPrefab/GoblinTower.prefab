@@ -198,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boneBuyPrice: 50
   boneSellPrice: 35
+  range: 1
   levels:
   - experienceToUpgrade: 10
     levelIndex: 0
@@ -310,7 +311,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!114 &6758375033895693783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +328,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   projectile: {fileID: 2003314031358533093, guid: 8d1a4c7118e859c488b5011b5a7382c0,
     type: 3}
-  damage: 11
+  damage: 10
   shootSpeed: 3
 --- !u!1 &7863233375373522449
 GameObject:

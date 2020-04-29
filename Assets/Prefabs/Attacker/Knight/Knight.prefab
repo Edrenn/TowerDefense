@@ -572,7 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  boneValue: 100
+  boneValue: 20
   experienceValue: 20
   enumName: 0
   speed: 1

@@ -8,6 +8,7 @@ public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject BuyInterface;
     [SerializeField] GameObject Btn;
+    [SerializeField] Image RangeImg;
 
     private void Awake()
     {
@@ -41,7 +42,8 @@ public class TowerSpawner : MonoBehaviour
         foreach (var tower in towers)
         {
             GameObject gameObject = Instantiate(Btn);
-            gameObject.GetComponent<BuyTowerButton>().SetTowerData(tower.name,tower.boneBuyPrice, tower.towerSprite);
+            gameObject.GetComponent<BuyTowerButton>().SetTowerData(tower.towerName,tower.boneBuyPrice, tower.towerSprite, tower.range);
+            //gameObject.GetComponent<BuyTowerButton>().SetParent(this);
             gameObject.transform.SetParent(BuyInterface.transform, false);
         }
     }
@@ -52,5 +54,17 @@ public class TowerSpawner : MonoBehaviour
         currentTower.parentSpawner = this;
         this.gameObject.SetActive(false);
 
+    }
+
+    public void ShowRange(float range)
+    {
+        var newRange = new Vector2(20 * range, 20 * range);
+        RangeImg.GetComponent<RectTransform>().sizeDelta = new Vector2(20 * range, 20 * range);
+        RangeImg.gameObject.SetActive(true);
+    }
+
+    public void HideRange()
+    {
+        RangeImg.gameObject.SetActive(false);
     }
 }
