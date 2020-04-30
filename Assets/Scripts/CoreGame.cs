@@ -46,7 +46,8 @@ public class CoreGame : MonoBehaviour
 
     private void Awake()
     {
-        datas = FindObjectOfType<DataConveyer>().gameDatas;
+        //datas = FindObjectOfType<DataConveyer>().gameDatas;
+        datas = SaveSystem.LoadGeneric<CoreGameData>(CoreGameData.DATAKEY);
         UpdateGameSpeedText();
         UpdateBoneText();
         UpdateLifeText();
@@ -167,7 +168,8 @@ public class CoreGame : MonoBehaviour
     private void InitializeTowers()
     {
         availableTowers = new Dictionary<string, Tower>();
-        List<TowerData> towerDatas = FindObjectOfType<DataConveyer>().allTowerDatas;
+        //List<TowerData> towerDatas = FindObjectOfType<DataConveyer>().allTowerDatas;
+        List<TowerData> towerDatas = SaveSystem.LoadGeneric<List<TowerData>>(TowerData.DATAKEY);
 
         if (towerDatas != null && towerDatas.Count > 0)
         {

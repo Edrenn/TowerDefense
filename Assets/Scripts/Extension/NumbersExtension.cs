@@ -27,5 +27,15 @@ namespace Assets.Scripts.Extension
             return currentValue * (1 + (percentage / 100));
         }
 
+        public static float ReduceDecimals(this float currentValue, int remainingDecimals)
+        {
+            if (remainingDecimals == 1)
+            {
+                return (float)(Math.Truncate((double)currentValue * 10.0) / 10.0);
+            }
+
+            return 0;
+        }
+
     }
 }

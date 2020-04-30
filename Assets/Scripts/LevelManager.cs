@@ -33,59 +33,57 @@ public class LevelManager : MonoBehaviour
     public void Save()
     {
         //CoreGameData coreGameData = new CoreGameData();
-        //coreGameData.lastUnlockLevel = 1;
         //SaveSystem.SaveGeneric<CoreGameData>(coreGameData, CoreGameData.DATAKEY);
 
         List<TowerData> towerDatas = new List<TowerData>();
-        towerDatas.Add(new TowerData("GoblinTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 0.5f, 10, 3));
-        towerDatas.Add(new TowerData("GoblinTower", 70, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 1, 10, 3));
-        towerDatas.Add(new TowerData("GoblinTower", 90, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 2, 10, 3));
+        towerDatas.Add(new TowerData("GoblinTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 2, 10, 3));
+        towerDatas.Add(new TowerData("EyeTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 3, 50, 1));
         SaveSystem.SaveGeneric(towerDatas, TowerData.DATAKEY);
 
-        /*
-        List<LevelData> levels = new List<LevelData>();
-        levels.Add(new LevelData()
-        {
-            currentStars = 0,
-            Index = 1,
-            isUnlocked = true,
-            Waves = new List<Wave>
-            {
-                new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 5 },
-                new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 5 },
-                new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 10 },
-                new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 }
-            }
-        });
-        levels.Add(new LevelData()
-        {
-            currentStars = 0,
-            Index = 2,
-            isUnlocked = false,
-            Waves = new List<Wave>
-            {
-                new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 7 },
-                new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 10 },
-                new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 13 },
-                new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 20 }
-            }
-
-        });
-        levels.Add(new LevelData()
-        {
-            currentStars = 0,
-            Index = 3,
-            isUnlocked = false,
-            Waves = new List<Wave>
-            {
-                new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 15 },
-            new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 },
-            new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 20 },
-            new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 20 }
-            }
-        });
         
-        SaveSystem.SaveGeneric<List<LevelData>>(levels,LevelData.DATAKEY);*/
+        //List<LevelData> levels = new List<LevelData>();
+        //levels.Add(new LevelData()
+        //{
+        //    currentStars = 0,
+        //    Index = 1,
+        //    isUnlocked = true,
+        //    Waves = new List<Wave>
+        //    {
+        //        new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 5 },
+        //        new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 5 },
+        //        new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 10 },
+        //        new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 }
+        //    }
+        //});
+        //levels.Add(new LevelData()
+        //{
+        //    currentStars = 0,
+        //    Index = 2,
+        //    isUnlocked = false,
+        //    Waves = new List<Wave>
+        //    {
+        //        new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 7 },
+        //        new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 10 },
+        //        new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 13 },
+        //        new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 20 }
+        //    }
+
+        //});
+        //levels.Add(new LevelData()
+        //{
+        //    currentStars = 0,
+        //    Index = 3,
+        //    isUnlocked = false,
+        //    Waves = new List<Wave>
+        //    {
+        //        new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 15 },
+        //    new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 },
+        //    new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 20 },
+        //    new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 20 }
+        //    }
+        //});
+        
+        //SaveSystem.SaveGeneric<List<LevelData>>(levels,LevelData.DATAKEY);
     }
 
     public void ResetData()
