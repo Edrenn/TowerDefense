@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
         List<TowerData> towerDatas = new List<TowerData>();
         towerDatas.Add(new TowerData("GoblinTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 2, 10, 3));
         towerDatas.Add(new TowerData("EyeTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 3, 50, 1));
+        towerDatas.Add(new TowerData("MushroomTower", 50, 2, new List<TowerLevel>() { new TowerLevel(10, 0, 50) }, 3, 0, .6f));
         SaveSystem.SaveGeneric(towerDatas, TowerData.DATAKEY);
 
         

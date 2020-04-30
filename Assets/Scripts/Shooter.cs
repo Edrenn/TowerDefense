@@ -8,12 +8,12 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] List<Attacker> allTargetInSight = new List<Attacker>();
-    [SerializeField] private Attacker currentTarget;
-    [SerializeField] private Projectile projectile;
+    [SerializeField] protected Attacker currentTarget;
+    [SerializeField] protected Projectile projectile;
     [SerializeField] private int damage;
     [SerializeField] private float shootSpeed;
     private float range;
-    private Tower parent;
+    protected Tower parent;
 
     private void Start()
     {
@@ -129,7 +129,7 @@ public class Shooter : MonoBehaviour
         GetComponent<Animator>().SetBool("isTargetInSight", true);
     }
 
-    private bool IsTargetInSight()
+    protected bool IsTargetInSight()
     {
         return allTargetInSight.Count > 0;
     }

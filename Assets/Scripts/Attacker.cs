@@ -13,20 +13,33 @@ public class Attacker : MonoBehaviour
 
     public AttackerEnum enumName;
     Vector2 currentDirection = Vector2.down;
-    [SerializeField] float speed = 1f;
+    [SerializeField] float currentSpeed = 1f;
+    [SerializeField] float maxSpeed = 1f;
     [SerializeField] private GameObject DeathAnimation;
     [SerializeField] private Slider HealthBar;
-    public void SetMovementSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
 
     private void Awake()
     {
         currentHealth = maxHealth;
         HealthBar.maxValue = maxHealth;
+        maxSpeed = currentSpeed;
         UpdateHealthBar();
     }
+    public void ResetSpeed()
+    {
+        currentSpeed = maxSpeed;
+    }
+
+    public void SetMovementSpeed(float newSpeed)
+    {
+        currentSpeed = newSpeed;
+    }
+
+    public float GetMovementSpeed()
+    {
+        return currentSpeed;
+    }
+
 
     private void UpdateHealthBar()
     {
@@ -57,7 +70,7 @@ public class Attacker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(currentDirection * speed * Time.deltaTime);
+        transform.Translate(currentDirection * currentSpeed * Time.deltaTime);
     }
 
     public void SetDirection(Direction direction)
