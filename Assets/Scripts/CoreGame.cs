@@ -25,10 +25,13 @@ public class CoreGame : MonoBehaviour
     bool isVictoryScreenOn = false;
     [SerializeField] GameObject defeatScreen;
 
+    [SerializeField] GameObject pauseScreen;
+
     // Speed
     [SerializeField] float[] availableGameSpeed = new float[] { 1, 2, 3 };
     [SerializeField] Text changeSpeedButtonText;
     private int currentGameSpeedIndex = 0;
+    private bool isGamePaused = false;
     // Towers
     public Dictionary<string,Tower> availableTowers;
 
@@ -70,6 +73,7 @@ public class CoreGame : MonoBehaviour
         {
             spawnerParent = new GameObject(ATTACKER_PARENT_GAMEOBJECT);
         }
+        pauseScreen.SetActive(false);
     }
 
     private void Update()
@@ -77,6 +81,19 @@ public class CoreGame : MonoBehaviour
         if (allSpawners != null && allSpawners.Count <= 0 && spawnerParent.transform.childCount == 0 && !isVictoryScreenOn)
         {
             OnWin();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isGamePaused)
+            {
+                SetPauseOn();
+            }
+            else
+            {
+                SetPauseOff();
+            }
+
         }
     }
 
@@ -196,6 +213,22 @@ public class CoreGame : MonoBehaviour
         }
 
         return null;
+    }
+    #endregion
+
+    #region Pause
+    private void SetPauseOn()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0;
+        pauseScreen.SetActive(true);
+    }
+
+    public void SetPauseOff()
+    {
+        isGamePaused = false;
+        Time.timeScale = availableGameSpeed[currentGameSpeedIndex];
+        pauseScreen.SetActive(false);
     }
     #endregion
 
