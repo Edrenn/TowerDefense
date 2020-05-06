@@ -23,5 +23,7 @@ namespace Assets.Scripts
         public int maxTowerShootSpeedUpgrade;
         public int currentTowerShootSpeedUpgradeIndex;
 
+        public int upgradePointsAvailable;
+
     }
 }

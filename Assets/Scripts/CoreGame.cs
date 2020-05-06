@@ -194,7 +194,7 @@ public class CoreGame : MonoBehaviour
             {
                 Tower newTower = (Tower)Resources.Load("TowersPrefab/"+towerData.towerName, typeof(Tower));
                 newTower.SetTowerData(towerData);
-                newTower.SetTowerBonus(towerData.damage.AddPercentageCoef(datas.towerDamageBonus), towerData.shotSpeed.AddPercentageCoef(datas.towerDamageBonus));
+                newTower.SetTowerBonus(towerData.damage.AddPercentageCoef(datas.towerDamageBonus), towerData.shotSpeed.AddPercentageCoef(datas.towerShootSpeedBonus));
                 availableTowers.Add(towerData.towerName, newTower);
             }
         }

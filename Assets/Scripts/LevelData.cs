@@ -11,6 +11,7 @@ public class LevelData
 
     public int Id;
     public bool isUnlocked { get; set; }
+    public bool upgradePointAvailable { get; set; } = true;
     public int currentStars { get; set; }
     public int Index { get; set; }
 

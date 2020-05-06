@@ -17,7 +17,13 @@ namespace Assets.Scripts
             {
                 dataConveyer.allLevels[dataConveyer.currentLevelData.Index + 1].isUnlocked = true;
             }
+            if (dataConveyer.currentLevelData.upgradePointAvailable == true)
+            {
+                dataConveyer.gameDatas.upgradePointsAvailable += 1;
+                dataConveyer.currentLevelData.upgradePointAvailable = false;
+            }
             
+
             // Add Score
 
             SaveSystem.SaveGeneric<List<LevelData>>(dataConveyer.allLevels.Values.ToList(),LevelData.DATAKEY);

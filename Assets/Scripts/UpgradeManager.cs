@@ -10,12 +10,21 @@ public class UpgradeManager : MonoBehaviour
     public CoreGameData gameDatas;
 
     [SerializeField] Text boneUpgrade;
-    [SerializeField] Text damageUpgrade;
-    [SerializeField] Text shootSpeedUpgrade;
+    [SerializeField] Button boneUpgradeBtn;
 
+    [SerializeField] Text damageUpgrade;
+    [SerializeField] Button damageUpgradeBtn;
+
+    [SerializeField] Text shootSpeedUpgrade;
+    [SerializeField] Button shootUpgradeBtn;
+
+    [SerializeField] Text availableUpgradePoints;
     private void Start()
     {
         GetGameDatas();
+        AfterBuyUIUpdate();
+
+        UpdateUpgradePoints();
         UpdateBoneUpgradeText();
         UpdateDamageUpgradeText();
         UpdateShootSpeedUpgradeText();
@@ -26,6 +35,8 @@ public class UpgradeManager : MonoBehaviour
     {
         gameDatas.killIncomeBonus += 10;
         UpdateBoneUpgradeText();
+        gameDatas.upgradePointsAvailable -= 1;
+        AfterBuyUIUpdate();
     }
 
     private void UpdateBoneUpgradeText()
@@ -39,6 +50,8 @@ public class UpgradeManager : MonoBehaviour
     {
         gameDatas.towerDamageBonus += 50;
         UpdateDamageUpgradeText();
+        gameDatas.upgradePointsAvailable -= 1;
+        AfterBuyUIUpdate();
     }
 
     private void UpdateDamageUpgradeText()
@@ -52,6 +65,8 @@ public class UpgradeManager : MonoBehaviour
     {
         gameDatas.towerShootSpeedBonus += 20;
         UpdateShootSpeedUpgradeText();
+        gameDatas.upgradePointsAvailable -= 1;
+        AfterBuyUIUpdate();
     }
 
     private void UpdateShootSpeedUpgradeText()
@@ -59,6 +74,29 @@ public class UpgradeManager : MonoBehaviour
         shootSpeedUpgrade.text = gameDatas.towerShootSpeedBonus.ToString() + " %";
     }
     #endregion
+
+    #region UpgradePoints
+    private void UpdateUpgradePoints()
+    {
+        availableUpgradePoints.text = gameDatas.upgradePointsAvailable.ToString();
+    }
+    #endregion
+
+    private void AfterBuyUIUpdate()
+    {
+        if (gameDatas.upgradePointsAvailable < 1)
+        {
+            SetAllButtonInteractable(false);
+        }
+        UpdateUpgradePoints();
+    }
+
+    private void SetAllButtonInteractable(bool isInteractable)
+    {
+        boneUpgradeBtn.interactable = isInteractable;
+        damageUpgradeBtn.interactable = isInteractable;
+        shootUpgradeBtn.interactable = isInteractable;
+    }
 
     private void GetGameDatas()
     {
