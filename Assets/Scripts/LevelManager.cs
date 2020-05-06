@@ -23,7 +23,14 @@ public class LevelManager : MonoBehaviour
             foreach (var lvl in allLevels)
             {
                 GameObject newLevelUI = Instantiate(levelUIPrefab);
-                newLevelUI.GetComponent<LevelButton>().SetLevelData(lvl);
+                newLevelUI.GetComponentInChildren<LevelButton>().SetLevelData(lvl);
+                if (lvl.currentScore == 0)
+                    newLevelUI.GetComponentInChildren<ScoreManager>().gameObject.SetActive(false);
+                else
+                {
+                    newLevelUI.GetComponentInChildren<ScoreManager>().gameObject.SetActive(true);
+                    newLevelUI.GetComponentInChildren<ScoreManager>().SetSkullScore(lvl.currentScore);
+                }
                 newLevelUI.transform.SetParent(hlg.transform);
             }
         }

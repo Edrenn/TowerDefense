@@ -238,8 +238,22 @@ public class CoreGame : MonoBehaviour
         isVictoryScreenOn = true;
         victoryScreen.SetActive(true);
         StartCoroutine(ChangeToVictoryScreen());
+        SetSkullScore();
     }
 
+    private void SetSkullScore()
+    {
+        DataConveyer dataConveyer = FindObjectOfType<DataConveyer>();
+        if (dataConveyer)
+        {
+            if (castleCurrentHP >= 10)
+                dataConveyer.currentLevelData.currentScore = 3;
+            else if (castleCurrentHP > 6)
+                dataConveyer.currentLevelData.currentScore = 2;
+            else
+                dataConveyer.currentLevelData.currentScore = 1;
+        }
+    }
     public void SpawnerFinishedCall(Spawner spawner)
     {
         if (allSpawners == null)

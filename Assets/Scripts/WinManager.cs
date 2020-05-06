@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
     public class WinManager : MonoBehaviour
     {
+        [SerializeField] Text levelNameText;
+        [SerializeField] Image[] skullScoreTab;
+        
+
         private void Awake()
         {
             DataConveyer dataConveyer = FindObjectOfType<DataConveyer>();
@@ -22,7 +27,9 @@ namespace Assets.Scripts
                 dataConveyer.gameDatas.upgradePointsAvailable += 1;
                 dataConveyer.currentLevelData.upgradePointAvailable = false;
             }
-            
+
+            levelNameText.text = dataConveyer.currentLevelData.Index.ToString();
+            SetSkullScore(dataConveyer.currentLevelData.currentScore);
 
             // Add Score
 
@@ -31,6 +38,14 @@ namespace Assets.Scripts
             if (!dataConveyer.allLevels.ContainsKey(dataConveyer.currentLevelData.Index + 1))
             {
                 FindObjectOfType<LevelLoader>().LoadEndGameScene();
+            }
+        }
+
+        private void SetSkullScore(int score)
+        {
+            for (int i = 0; i < score; i++)
+            {
+                skullScoreTab[i].color = Color.white;
             }
         }
 

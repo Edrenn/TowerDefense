@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             List<LevelData> levels = new List<LevelData>();
             levels.Add(new LevelData()
             {
-                currentStars = 0,
+                currentScore = 0,
                 Index = 1,
                 isUnlocked = true,
                 Waves = new List<Wave>
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             });
             levels.Add(new LevelData()
             {
-                currentStars = 0,
+                currentScore = 0,
                 Index = 2,
                 isUnlocked = false,
                 Waves = new List<Wave>
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
             });
             levels.Add(new LevelData()
             {
-                currentStars = 0,
+                currentScore = 0,
                 Index = 3,
                 isUnlocked = false,
                 Waves = new List<Wave>

@@ -33,4 +33,9 @@ public class LevelButton : MonoBehaviour
     {
         GetComponent<Button>().interactable = isInteractable;
     }
+
+    private void SetScore(int score)
+    {
+
+    }
 }

@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059e565631f5c0443bac0de21069a3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelUIPrefab: {fileID: 2309330009223362206, guid: 7064d6ec4a534da4fb098b302185f2bc,
+  levelUIPrefab: {fileID: 4352118217063629452, guid: d2e06429e6370f745bb9074f9326003c,
     type: 3}
   lastLevelUnlocked: 0
 --- !u!4 &1457719058
