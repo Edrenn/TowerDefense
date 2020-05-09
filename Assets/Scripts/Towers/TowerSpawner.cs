@@ -19,7 +19,7 @@ public class TowerSpawner : MonoBehaviour
     {
         if (BuyInterface.activeSelf)
         {
-            BuyInterface.SetActive(false);
+            HideInterface();
         }
         else
             BuyInterface.SetActive(true);
@@ -66,5 +66,10 @@ public class TowerSpawner : MonoBehaviour
     public void HideRange()
     {
         RangeImg.gameObject.SetActive(false);
+    }
+
+    public void HideInterface()
+    {
+        BuyInterface.SetActive(false);
     }
 }

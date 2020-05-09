@@ -37,4 +37,24 @@ public static class SaveSystem
             return default(T);
         }
     }
+
+    public static void ResetSave()
+    {
+        string path = Application.persistentDataPath + "/";
+        // Reset towers
+        if (File.Exists(path + TowerData.DATAKEY))
+        {
+            File.Delete(path + TowerData.DATAKEY);
+        }
+        // Reset levels
+        if (File.Exists(path + LevelData.DATAKEY))
+        {
+            File.Delete(path + LevelData.DATAKEY);
+        }
+        // Reset game datas
+        if (File.Exists(path + CoreGameData.DATAKEY))
+        {
+            File.Delete(path + CoreGameData.DATAKEY);
+        }
+    }
 }

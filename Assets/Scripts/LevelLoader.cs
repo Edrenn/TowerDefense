@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,6 +40,11 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene("Level" + levelNumber);
     }
 
+    internal void ReloadGame()
+    {
+        SceneManager.LoadScene("SplashScreen");
+    }
+
     public void LoadVictoryScreen()
     {
         SceneManager.LoadScene("VictoryScreen");
@@ -59,7 +65,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadOptionsScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("OptionsScreen");
+        SceneManager.LoadScene("OptionScreen");
     }
 
     public void LoadUpgradeScene()

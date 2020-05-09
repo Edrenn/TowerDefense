@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 2624e5b48d149604fbe713467121665f
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 4bbaff0f923fcaa41adf2b920126186a
   - enabled: 1
     path: Assets/Scenes/LevelSelectionScreen.unity
     guid: daf619fb5b20faa499448dbae8f30008
@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndGameScreen.unity
     guid: a63458bafe4a3ae40b5b20a3f4060b47
+  - enabled: 1
+    path: Assets/Scenes/OptionScreen.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
