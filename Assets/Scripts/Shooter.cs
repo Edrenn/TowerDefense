@@ -1,11 +1,13 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Projectiles;
+using Assets.Scripts.Towers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+public class Shooter : MonoBehaviour, Upgradable
 {
     [SerializeField] List<Attacker> allTargetInSight = new List<Attacker>();
     [SerializeField] protected Attacker currentTarget;
@@ -80,10 +82,10 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    public void Upgrade(int damageIncrease, float shootSpeedIncrease)
+    public void Upgrade(UpgradeParameters upgradeParameters)
     {
-        this.damage += damageIncrease;
-        this.shootSpeed += shootSpeedIncrease;
+        this.damage += upgradeParameters.damageIncrease;
+        this.shootSpeed += upgradeParameters.shootSpeedIncrease;
     }
 
     public void Fire()

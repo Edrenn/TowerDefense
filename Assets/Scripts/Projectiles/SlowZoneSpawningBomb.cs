@@ -13,6 +13,7 @@ namespace Assets.Scripts.Projectiles
         Vector3 targetPosition;
         [SerializeField] GameObject slowZonePrefab;
         public float slowCoef;
+        private Tower parentTower;
         private void Start()
         {
             targetPosition = base.target.transform.position;
@@ -28,10 +29,16 @@ namespace Assets.Scripts.Projectiles
             }
         }
 
+        public void SetParentTower(Tower _parentTower)
+        {
+            parentTower = _parentTower;
+        }
+
         private void SpawnSlowZone()
         {
             GameObject slowZone = Instantiate(slowZonePrefab, transform.position, Quaternion.identity);
             SlowingZone slowingZone = slowZone.GetComponent<SlowingZone>();
+            slowingZone.SetParentTower(parentTower);
             slowingZone.SetSlowingCoef(slowCoef);
             Destroy(gameObject);
         }

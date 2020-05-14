@@ -10,6 +10,6 @@ namespace Assets.Scripts.enums
     {
         Knight,
         Ranger,
-        Thieve
+        Farmer
     }
 }

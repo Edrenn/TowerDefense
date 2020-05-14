@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.enums;
+﻿using Assets.Scripts;
+using Assets.Scripts.enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,16 +29,27 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         currentLevelData = FindObjectOfType<CoreGame>();
+        var dataConveyer = FindObjectOfType<DataConveyer>();
         waveTimer.maxValue = timeBetweenWaves;
         allWaves = new Queue<Wave>();
-        Wave wave1 = new Wave() { enemyType = AttackerEnum.Knight , nbEnemy = 5 };
-        allWaves.Enqueue(wave1);
-        Wave wave2 = new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 5 };
-        allWaves.Enqueue(wave2);
-        Wave wave3 = new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 10 };
-        allWaves.Enqueue(wave3);
-        Wave wave4 = new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 };
-        allWaves.Enqueue(wave4);
+        if (dataConveyer)
+        {
+            foreach (var wav in dataConveyer.currentLevelData.Waves)
+            {
+                allWaves.Enqueue(wav);
+            }
+        }
+        else
+        {
+            Wave wave1 = new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 5 };
+            allWaves.Enqueue(wave1);
+            Wave wave2 = new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 5 };
+            allWaves.Enqueue(wave2);
+            Wave wave3 = new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 10 };
+            allWaves.Enqueue(wave3);
+            Wave wave4 = new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 };
+            allWaves.Enqueue(wave4);
+        }
     }
 
     private void Start()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Interfaces;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -85,9 +86,14 @@ public class Tower : MonoBehaviour
 
     public void KillAnAttacker(Attacker target)
     {
+        EarnExperience(target.experienceValue);
+    }
+
+    public void EarnExperience(int amount)
+    {
         if (!maxLevelReached && !readyToUpgrade)
         {
-            currentExperience += target.experienceValue;
+            currentExperience += amount;
             Debug.Log("Current Xp : " + currentExperience);
             if (currentExperience >= levels[currentLevelIndex].experienceToUpgrade)
             {
@@ -132,7 +138,7 @@ public class Tower : MonoBehaviour
                 readyToUpgrade = false;
                 towerLevelUI.SetUpgradeVisibility(false);
                 currentExperience = 0;
-                GetComponentInChildren<Shooter>().Upgrade(1, 0.5f);
+                GetComponentInChildren<Upgradable>().Upgrade(new Assets.Scripts.Towers.UpgradeParameters(1, 0.5f,15f));
                 UpdateTowerInterface();
             }
             else

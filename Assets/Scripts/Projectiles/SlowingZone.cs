@@ -10,6 +10,7 @@ namespace Assets.Scripts.Projectiles
 {
     public class SlowingZone : MonoBehaviour
     {
+        private Tower parentTower;
         [SerializeField] private float slowingCoef;
         [SerializeField] private float slowingDuration;
         List<Attacker> allAttackerInRange;
@@ -34,11 +35,17 @@ namespace Assets.Scripts.Projectiles
             slowingCoef = newSlowCoef;
         }
 
+        public void SetParentTower(Tower _parentTower)
+        {
+            parentTower = _parentTower;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Attacker attacker = collision.GetComponent<Attacker>();
             if (attacker)
             {
+                parentTower.EarnExperience(attacker.experienceValue);
                 allAttackerInRange.Add(attacker);
                 attacker.SetMovementSpeed(attacker.GetMovementSpeed() * slowingCoef);
             }

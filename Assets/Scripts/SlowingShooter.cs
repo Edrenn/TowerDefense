@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Projectiles;
+using Assets.Scripts.Towers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,13 @@ namespace Assets.Scripts
     public class SlowingShooter : Shooter
     {
         public float slowValue;
+        private Tower parentTower;
+
+        private void Awake()
+        {
+            parentTower = GetComponentInParent<Tower>();
+        }
+
         new public void Fire()
         {
             if (currentTarget)
@@ -19,6 +27,7 @@ namespace Assets.Scripts
                 proj.SetTarget(currentTarget);
                 proj.parent = parent;
                 SlowZoneSpawningBomb slowBomb = proj.GetComponent<SlowZoneSpawningBomb>();
+                slowBomb.SetParentTower(parentTower);
                 slowBomb.slowCoef = (100 - slowValue) / 100;
 
                 if (!IsTargetInSight())
@@ -30,6 +39,11 @@ namespace Assets.Scripts
             {
                 GetComponent<Animator>().SetBool("isTargetInSight", false);
             }
+        }
+
+        new public void Upgrade(UpgradeParameters upgradeParameters)
+        {
+            this.slowValue += upgradeParameters.slowEffectIncrease;
         }
     }
 
