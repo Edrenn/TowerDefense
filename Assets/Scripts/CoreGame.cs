@@ -25,7 +25,11 @@ public class CoreGame : MonoBehaviour
     bool isVictoryScreenOn = false;
     [SerializeField] GameObject defeatScreen;
 
-    [SerializeField] GameObject pauseScreen;
+    // Pause
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject optionScreen;
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider soundVolumeSlider;
 
     // Speed
     [SerializeField] float[] availableGameSpeed = new float[] { 1, 2, 3 };
@@ -73,7 +77,11 @@ public class CoreGame : MonoBehaviour
         {
             spawnerParent = new GameObject(ATTACKER_PARENT_GAMEOBJECT);
         }
+
+        musicVolumeSlider.value = PlayerPrefs.GetFloat(OptionManager.MUSICVOLUME_KEY);
+        soundVolumeSlider.value = PlayerPrefs.GetFloat(OptionManager.SOUNDVOLUME_KEY);
         pauseScreen.SetActive(false);
+        optionScreen.SetActive(false);
     }
 
     private void Update()
@@ -91,6 +99,7 @@ public class CoreGame : MonoBehaviour
             }
             else
             {
+                optionScreen.SetActive(false);
                 SetPauseOff();
             }
 
@@ -229,6 +238,23 @@ public class CoreGame : MonoBehaviour
         isGamePaused = false;
         Time.timeScale = availableGameSpeed[currentGameSpeedIndex];
         pauseScreen.SetActive(false);
+    }
+
+    public void ShowOptions()
+    {
+        optionScreen.SetActive(true);
+    }
+
+    public void HideOptions()
+    {
+        optionScreen.SetActive(false);
+        SaveOptions();
+    }
+
+    private void SaveOptions()
+    {
+        PlayerPrefs.SetFloat(OptionManager.MUSICVOLUME_KEY, musicVolumeSlider.value);
+        PlayerPrefs.SetFloat(OptionManager.SOUNDVOLUME_KEY, soundVolumeSlider.value);
     }
     #endregion
 
