@@ -12,10 +12,16 @@ namespace Assets.Scripts
     {
         [SerializeField] Text levelNameText;
         [SerializeField] Image[] skullScoreTab;
-        
+
+        [SerializeField] GameObject nextSkullGO;
+        [SerializeField] Text nextSkullText;
+
+        [SerializeField] Text remainingHPText;
+
 
         private void Awake()
         {
+            nextSkullGO.SetActive(false);
             DataConveyer dataConveyer = FindObjectOfType<DataConveyer>();
             // We test if there is a level to unlock (currentLevel.Index + 1)
             if (dataConveyer.allLevels.ContainsKey(dataConveyer.currentLevelData.Index + 1))
@@ -29,9 +35,14 @@ namespace Assets.Scripts
             }
 
             levelNameText.text = dataConveyer.currentLevelData.Index.ToString();
-            SetSkullScore(dataConveyer.currentLevelData.currentScore);
-
+            remainingHPText.text = dataConveyer.lastLevelRemainingHP.ToString();
             // Add Score
+            SetSkullScore(dataConveyer.currentLevelData.currentScore);
+            if (dataConveyer.currentLevelData.currentScore < 3)
+            {
+                SetNextSkullNeed(dataConveyer.currentLevelData.currentScore);
+            }
+
 
             SaveSystem.SaveGeneric<List<LevelData>>(dataConveyer.allLevels.Values.ToList(),LevelData.DATAKEY);
 
@@ -47,6 +58,19 @@ namespace Assets.Scripts
             {
                 skullScoreTab[i].color = Color.white;
             }
+        }
+
+        private void SetNextSkullNeed(int score)
+        {
+            if (score == 2)
+            {
+                nextSkullText.text = "10 HP";
+            }
+            else if (score == 1)
+            {
+                nextSkullText.text = "5 HP";
+            }
+            nextSkullGO.SetActive(true);
         }
 
     }

@@ -19,6 +19,8 @@ namespace Assets.Scripts
 
         public List<TowerData> allTowerDatas { get; set; }
 
+        public int lastLevelRemainingHP { get; set; }
+
         private void Awake()
         {
             DontDestroyOnLoad(this);

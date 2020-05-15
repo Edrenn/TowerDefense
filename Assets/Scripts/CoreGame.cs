@@ -235,6 +235,7 @@ public class CoreGame : MonoBehaviour
     public void OnWin()
     {
         Debug.Log("Show Victory Screen");
+        FindObjectOfType<DataConveyer>().lastLevelRemainingHP = castleCurrentHP;
         isVictoryScreenOn = true;
         victoryScreen.SetActive(true);
         StartCoroutine(ChangeToVictoryScreen());
@@ -248,9 +249,9 @@ public class CoreGame : MonoBehaviour
         {
             if (castleCurrentHP >= 10)
                 dataConveyer.currentLevelData.currentScore = 3;
-            else if (castleCurrentHP > 6)
+            else if (castleCurrentHP > 6 && dataConveyer.currentLevelData.currentScore < 3)
                 dataConveyer.currentLevelData.currentScore = 2;
-            else
+            else if (dataConveyer.currentLevelData.currentScore < 2)
                 dataConveyer.currentLevelData.currentScore = 1;
         }
     }
