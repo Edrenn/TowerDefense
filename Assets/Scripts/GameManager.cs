@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour
                 Waves = new List<Wave>
                 {
                     new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 5 },
-                    new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 5 },
-                    new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 10 },
-                    new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 }
+                    //new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 5 },
+                    //new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 10 },
+                    //new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 }
                 }
             });
             levels.Add(new LevelData()

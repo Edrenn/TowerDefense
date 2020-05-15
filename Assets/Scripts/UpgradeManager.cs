@@ -86,16 +86,16 @@ public class UpgradeManager : MonoBehaviour
     {
         if (gameDatas.upgradePointsAvailable < 1)
         {
-            SetAllButtonInteractable(false);
+            SetAllButtonVisible(false);
         }
         UpdateUpgradePoints();
     }
 
-    private void SetAllButtonInteractable(bool isInteractable)
+    private void SetAllButtonVisible(bool isVisible)
     {
-        boneUpgradeBtn.interactable = isInteractable;
-        damageUpgradeBtn.interactable = isInteractable;
-        shootUpgradeBtn.interactable = isInteractable;
+        boneUpgradeBtn.gameObject.SetActive(isVisible);
+        damageUpgradeBtn.gameObject.SetActive(isVisible);
+        shootUpgradeBtn.gameObject.SetActive(isVisible);
     }
 
     private void GetGameDatas()
