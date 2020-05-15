@@ -11,6 +11,7 @@ public class CoreGame : MonoBehaviour
 {
     [SerializeField] Canvas mainCanvas;
     public CoreGameData datas;
+    private DataConveyer currentDC;
     // bones
     public int boneAmount;
     [SerializeField] Text boneCountText;
@@ -53,6 +54,7 @@ public class CoreGame : MonoBehaviour
 
     private void Awake()
     {
+        currentDC = FindObjectOfType<DataConveyer>();
         //datas = FindObjectOfType<DataConveyer>().gameDatas;
         datas = SaveSystem.LoadGeneric<CoreGameData>(CoreGameData.DATAKEY);
         UpdateGameSpeedText();
@@ -86,7 +88,11 @@ public class CoreGame : MonoBehaviour
 
     private void Update()
     {
-        if (allSpawners != null && allSpawners.Count <= 0 && spawnerParent.transform.childCount == 0 && !isVictoryScreenOn)
+        if (allSpawners != null 
+            && allSpawners.Count <= 0 
+            && spawnerParent.transform.childCount == 0 
+            && !currentDC.currentLevelData.isBossLevel
+            && !isVictoryScreenOn)
         {
             OnWin();
         }
@@ -108,7 +114,6 @@ public class CoreGame : MonoBehaviour
 
     IEnumerator ChangeToVictoryScreen()
     {
-        Time.timeScale = 1;
         yield return new WaitForSeconds(3);
         FindObjectOfType<LevelLoader>().LoadVictoryScreen();
 
@@ -260,6 +265,7 @@ public class CoreGame : MonoBehaviour
 
     public void OnWin()
     {
+        Time.timeScale = 1;
         Debug.Log("Show Victory Screen");
         FindObjectOfType<DataConveyer>().lastLevelRemainingHP = castleCurrentHP;
         isVictoryScreenOn = true;

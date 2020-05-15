@@ -18,18 +18,24 @@ public class Spawner : MonoBehaviour
     [SerializeField] Direction spawnDirection;
     [SerializeField] GameObject attackerPrefab;
     [SerializeField] Queue<Wave> allWaves;
+    BossWave bossWave;
+    private bool isBossWave = false;
     public bool isSpawning = true;
     public bool waitingForWave = false;
 
     public int TEMP_timeBetweenSpawn;
 
-    private CoreGame currentLevelData;
+    private CoreGame coreGame;
     private GameObject spawnerParent;
 
     private void Awake()
     {
-        currentLevelData = FindObjectOfType<CoreGame>();
+        coreGame = FindObjectOfType<CoreGame>();
         var dataConveyer = FindObjectOfType<DataConveyer>();
+        if (dataConveyer.currentLevelData.bossWave != null)
+        {
+            bossWave = dataConveyer.currentLevelData.bossWave;
+        }
         waveTimer.maxValue = timeBetweenWaves;
         allWaves = new Queue<Wave>();
         if (dataConveyer)
@@ -85,7 +91,7 @@ public class Spawner : MonoBehaviour
             int spawnCount = 0;
             while (spawnCount < currentW.nbEnemy)
             {
-                Attacker newAttacker = currentLevelData.FindAttacker((AttackerEnum)currentW.enemyType);
+                Attacker newAttacker = coreGame.FindAttacker((AttackerEnum)currentW.enemyType);
                 if (newAttacker)
                 {
                     Spawn(newAttacker);
@@ -93,7 +99,7 @@ public class Spawner : MonoBehaviour
                 spawnCount++;
                 yield return new WaitForSeconds(TEMP_timeBetweenSpawn);
             }
-            if (allWaves.Count > 0)
+            if ((allWaves.Count > 0 || bossWave != null) && isBossWave == false)
             {
                 LaunchTimer();
                 yield return new WaitUntil(() => currentTime <= 0);
@@ -102,6 +108,13 @@ public class Spawner : MonoBehaviour
             {
                 FindObjectOfType<CoreGame>().SpawnerFinishedCall(this);
             }
+        }
+        if (bossWave != null)
+        {
+            allWaves = new Queue<Wave>(bossWave.ennemies);
+            bossWave = null;
+            isBossWave = true;
+            StartCoroutine(StartSpawn());
         }
     }
 

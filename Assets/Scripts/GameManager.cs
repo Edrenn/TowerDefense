@@ -40,12 +40,23 @@ public class GameManager : MonoBehaviour
                 currentScore = 0,
                 Index = 1,
                 isUnlocked = true,
+                isBossLevel = true,
                 Waves = new List<Wave>
                 {
-                    new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 5 },
-                    //new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 5 },
-                    //new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 10 },
-                    //new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 }
+                    new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 1 }
+                    //,new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 5 }
+                    //,new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 10 }
+                    //,new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 15 }
+                },
+                bossWave = new BossWave()
+                {
+                    ennemies = new List<Wave>
+                        {
+                        new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 3 }
+                        ,new Wave() { enemyType = AttackerEnum.Warchief, nbEnemy = 1 }
+                        ,new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 3 }
+                        ,new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 3 }
+                        }
                 }
             });
             levels.Add(new LevelData()

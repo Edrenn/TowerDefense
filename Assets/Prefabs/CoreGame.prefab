@@ -45,16 +45,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCanvas: {fileID: 0}
   datas:
-    lastUnlockLevel: 0
+    killIncomeBonus: 0
+    maxBoneUpgrade: 0
+    currentBoneUpgradeIndex: 0
+    towerDamageBonus: 0
+    maxTowerDamageUpgrade: 0
+    currentTowerDamageUpgradeIndex: 0
+    towerShootSpeedBonus: 0
+    maxTowerShootSpeedUpgrade: 0
+    currentTowerShootSpeedUpgradeIndex: 0
+    upgradePointsAvailable: 0
   boneAmount: 100
   boneCountText: {fileID: 0}
   currentLevel: 1
-  castleCurrentHP: 10
   castleHPText: {fileID: 0}
+  castleCurrentHP: 10
   loseHPAnimation: {fileID: 1242061474915083089, guid: a6e838ec1c3b2fd488ca0e7c9384f633,
     type: 3}
   victoryScreen: {fileID: 0}
   defeatScreen: {fileID: 0}
+  pauseScreen: {fileID: 0}
+  optionScreen: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  soundVolumeSlider: {fileID: 0}
   availableGameSpeed:
   - 1
   - 2
@@ -63,3 +76,6 @@ MonoBehaviour:
   allAvailableAttackers:
   - {fileID: 6739279892149771397, guid: ac0129d80b5ea864f918e78848f303dc, type: 3}
   - {fileID: 1281833281369645356, guid: 1a0af36f842b2f54b849ffb5841b86df, type: 3}
+  - {fileID: 3838144528558355404, guid: 3ce310ac780735c4a88d463a5362a3bd, type: 3}
+  - {fileID: 3838144528558355404, guid: 3ce310ac780735c4a88d463a5362a3bd, type: 3}
+  towerPrefab: {fileID: 719987087, guid: 1f4f724c010413248bb4dd3441772cd4, type: 3}

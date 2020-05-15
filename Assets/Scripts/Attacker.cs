@@ -8,6 +8,7 @@ public class Attacker : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth = 4;
+    public int damage = 1;
     [SerializeField] int boneValue = 10;
     public int experienceValue = 10;
 
@@ -15,7 +16,8 @@ public class Attacker : MonoBehaviour
     Vector2 currentDirection = Vector2.down;
     [SerializeField] float currentSpeed = 1f;
     [SerializeField] float maxSpeed = 1f;
-    [SerializeField] private GameObject DeathAnimation;
+    [SerializeField] protected float timeBeforeDestroyDeathAnim = 1f;
+    [SerializeField] protected GameObject DeathAnimation;
     [SerializeField] private Slider HealthBar;
 
     private void Awake()
@@ -57,10 +59,7 @@ public class Attacker : MonoBehaviour
         UpdateHealthBar();
         if (currentHealth <= 0)
         {
-            FindObjectOfType<CoreGame>().AddBonesByKill(boneValue);
-            Destroy(this.gameObject);
-            GameObject deathAnim = Instantiate(DeathAnimation, transform.position, Quaternion.identity) as GameObject;
-            Destroy(deathAnim, 1f);
+            Die();
             return true;
         }
         else
@@ -92,5 +91,13 @@ public class Attacker : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    protected virtual void Die()
+    {
+        FindObjectOfType<CoreGame>().AddBonesByKill(boneValue);
+        Destroy(this.gameObject);
+        GameObject deathAnim = Instantiate(DeathAnimation, transform.position, Quaternion.identity) as GameObject;
+        Destroy(deathAnim, timeBeforeDestroyDeathAnim);
     }
 }

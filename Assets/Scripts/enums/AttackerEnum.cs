@@ -8,8 +8,12 @@ namespace Assets.Scripts.enums
 {
     public enum AttackerEnum
     {
+        // Little units
         Knight,
         Ranger,
-        Farmer
+        Farmer,
+
+        // Bosses
+        Warchief
     }
 }

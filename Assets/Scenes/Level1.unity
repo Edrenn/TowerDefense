@@ -4590,7 +4590,7 @@ PrefabInstance:
     - target: {fileID: 824331681864435180, guid: 8b2832ad15930634a92527688742907c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 824331681864435181, guid: 8b2832ad15930634a92527688742907c,
         type: 3}
@@ -4705,22 +4705,22 @@ PrefabInstance:
     - target: {fileID: 4996332597840090184, guid: 8b2832ad15930634a92527688742907c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4996332597914540969, guid: 8b2832ad15930634a92527688742907c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4996332598237304920, guid: 8b2832ad15930634a92527688742907c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4996332598587841435, guid: 8b2832ad15930634a92527688742907c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2832ad15930634a92527688742907c, type: 3}
@@ -4751,6 +4751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631213993062184244, guid: 44ab442ee2175724197376f5fc4e8b3d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5631213993062184245, guid: 44ab442ee2175724197376f5fc4e8b3d,
         type: 3}
@@ -4883,11 +4888,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
-      propertyPath: allAvailableAttackers.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
-        type: 3}
       propertyPath: mainCanvas
       value: 
       objectReference: {fileID: 1330700534}
@@ -4913,26 +4913,9 @@ PrefabInstance:
       objectReference: {fileID: 8401232838377874353}
     - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
-      propertyPath: changeSpeedButtonText
-      value: 
-      objectReference: {fileID: 1922084890}
-    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
-        type: 3}
-      propertyPath: towerPrefab
-      value: 
-      objectReference: {fileID: 719987087, guid: 1f4f724c010413248bb4dd3441772cd4,
-        type: 3}
-    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
-        type: 3}
       propertyPath: pauseScreen
       value: 
       objectReference: {fileID: 1883697530}
-    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
-        type: 3}
-      propertyPath: allAvailableAttackers.Array.data[2]
-      value: 
-      objectReference: {fileID: 3838144528558355404, guid: 3ce310ac780735c4a88d463a5362a3bd,
-        type: 3}
     - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
       propertyPath: optionScreen
@@ -4948,6 +4931,17 @@ PrefabInstance:
       propertyPath: soundVolumeSlider
       value: 
       objectReference: {fileID: 1056036463}
+    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
+        type: 3}
+      propertyPath: changeSpeedButtonText
+      value: 
+      objectReference: {fileID: 1922084890}
+    - target: {fileID: 6372175903282699118, guid: ef3ba5eef16caff4480a747b2df1e947,
+        type: 3}
+      propertyPath: allAvailableAttackers.Array.data[3]
+      value: 
+      objectReference: {fileID: -2072410731567633337, guid: c1cd8bbf3dc4a4a429d92a6ff7cc985e,
+        type: 3}
     - target: {fileID: 6372175903282699119, guid: ef3ba5eef16caff4480a747b2df1e947,
         type: 3}
       propertyPath: m_LocalPosition.x

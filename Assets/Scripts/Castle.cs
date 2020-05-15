@@ -9,7 +9,7 @@ public class Castle : MonoBehaviour
         Attacker attacker = collision.GetComponent<Attacker>();
         if (attacker)
         {
-            FindObjectOfType<CoreGame>().LoseHP(1);
+            FindObjectOfType<CoreGame>().LoseHP(attacker.damage);
         }
         Destroy(collision.gameObject);
     }
