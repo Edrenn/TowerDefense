@@ -197,12 +197,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
-  boneValue: 5
+  maxHealth: 50
+  damage: 1
+  boneValue: 10
   experienceValue: 5
   enumName: 2
   currentSpeed: 1
-  maxSpeed: 0.5
+  maxSpeed: 0.8
   timeBeforeDestroyDeathAnim: 1
   DeathAnimation: {fileID: 4333995236670049932, guid: b4a175e1f6a7cc148b2bc35ff8e37b45,
     type: 3}

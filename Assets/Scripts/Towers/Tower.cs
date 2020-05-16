@@ -58,6 +58,11 @@ public class Tower : MonoBehaviour
             towerInterface.SetActive(true);
     }
 
+    public void HideTowerInterface()
+    {
+        towerInterface.SetActive(false);
+    }
+
     public void SetTowerData(TowerData _towerDatas)
     {
         boneBuyPrice = _towerDatas.boneBuyPrice;

@@ -44,6 +44,7 @@ namespace Assets.Scripts
         new public void Upgrade(UpgradeParameters upgradeParameters)
         {
             this.slowValue += upgradeParameters.slowEffectIncrease;
+            this.shootSpeed += upgradeParameters.shootSpeedIncrease;
         }
     }
 

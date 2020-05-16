@@ -24,7 +24,7 @@ public class Attacker : MonoBehaviour
     {
         currentHealth = maxHealth;
         HealthBar.maxValue = maxHealth;
-        maxSpeed = currentSpeed;
+        ResetSpeed();
         UpdateHealthBar();
     }
     public void ResetSpeed()

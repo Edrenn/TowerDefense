@@ -13,7 +13,7 @@ public class Shooter : MonoBehaviour, Upgradable
     [SerializeField] protected Attacker currentTarget;
     [SerializeField] protected Projectile projectile;
     [SerializeField] private int damage;
-    [SerializeField] private float shootSpeed;
+    [SerializeField] protected float shootSpeed;
     private float range;
     protected Tower parent;
 

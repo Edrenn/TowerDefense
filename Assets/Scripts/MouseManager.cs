@@ -11,11 +11,18 @@ public class MouseManager : MonoBehaviour
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-            if (hit.collider == null || hit.collider.tag !=  "Interface")
+            if (hit.collider == null || hit.collider.tag != "Interface")
             {
                 foreach (var ts in FindObjectsOfType<TowerSpawner>())
                 {
                     ts.HideInterface();
+                }
+            }
+            if (hit.collider == null || (hit.collider.tag != "Interface" && hit.collider.tag != "Tower"))
+            {
+                foreach (var t in FindObjectsOfType<Tower>())
+                {
+                    t.HideTowerInterface();
                 }
             }
         }

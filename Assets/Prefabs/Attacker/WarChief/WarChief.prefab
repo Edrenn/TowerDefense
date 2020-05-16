@@ -168,8 +168,8 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 500
   damage: 5
-  boneValue: 1
-  experienceValue: 1
+  boneValue: 0
+  experienceValue: 0
   enumName: 3
   currentSpeed: 0.3
   maxSpeed: 0.3

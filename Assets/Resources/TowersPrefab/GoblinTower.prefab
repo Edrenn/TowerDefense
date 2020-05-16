@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6490599424077045078}
   m_Layer: 0
   m_Name: TowerInterface
-  m_TagString: Untagged
+  m_TagString: Interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +63,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -97,9 +98,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!223 &6490599424077045078
 Canvas:
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 7482558597322588318}
   m_Layer: 0
   m_Name: GoblinTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,6 +378,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -439,11 +441,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2315217464771681842}
     m_Modifications:
-    - target: {fileID: 4385763639186160319, guid: 0b95cfc96f707e54d9e66dfe250f1e94,
-        type: 3}
-      propertyPath: m_Name
-      value: SellTowerButton
-      objectReference: {fileID: 0}
     - target: {fileID: 4385763639186160316, guid: 0b95cfc96f707e54d9e66dfe250f1e94,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -549,6 +546,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4385763639186160319, guid: 0b95cfc96f707e54d9e66dfe250f1e94,
+        type: 3}
+      propertyPath: m_Name
+      value: SellTowerButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b95cfc96f707e54d9e66dfe250f1e94, type: 3}
 --- !u!224 &9089169242476635564 stripped
@@ -564,11 +566,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2315217464771681842}
     m_Modifications:
-    - target: {fileID: 8312434995266063875, guid: cbe35f2795d58a240b2c7560d02394b2,
-        type: 3}
-      propertyPath: m_Name
-      value: UpgradeTowerButton
-      objectReference: {fileID: 0}
     - target: {fileID: 8312434995266063872, guid: cbe35f2795d58a240b2c7560d02394b2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,6 +670,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312434995266063875, guid: cbe35f2795d58a240b2c7560d02394b2,
+        type: 3}
+      propertyPath: m_Name
+      value: UpgradeTowerButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe35f2795d58a240b2c7560d02394b2, type: 3}
