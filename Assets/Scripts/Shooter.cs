@@ -21,7 +21,10 @@ public class Shooter : MonoBehaviour, Upgradable
 
     private void Start()
     {
-        SetShootVolume(PlayerPrefs.GetFloat(OptionManager.SOUNDVOLUME_KEY));
+        if (audioSource != null)
+        {
+            SetShootVolume(PlayerPrefs.GetFloat(OptionManager.SOUNDVOLUME_KEY));
+        }
         parent = GetComponentInParent<Tower>();
         Animator animator = GetComponent<Animator>();
         if (animator)
@@ -122,7 +125,10 @@ public class Shooter : MonoBehaviour, Upgradable
 
     public void SetShootVolume(float _volume)
     {
-        audioSource.volume = _volume;
+        if (audioSource != null)
+        {
+            audioSource.volume = _volume;
+        }
     }
 
     public void InitDamage(int damage)

@@ -252,6 +252,7 @@ public class CoreGame : MonoBehaviour
     {
         isGamePaused = false;
         Time.timeScale = availableGameSpeed[currentGameSpeedIndex];
+        SaveOptions();
         pauseScreen.SetActive(false);
     }
 

@@ -14,6 +14,11 @@ namespace Assets.Scripts.Projectiles
         List<Attacker> allAttackerInRange;
         [SerializeField] private GameObject explosionAnim;
         private bool exploding;
+        [SerializeField] private AudioSource audioSource;
+        public void SetShootVolume(float _volume)
+        {
+            audioSource.volume = _volume;
+        }
 
         private void Awake()
         {
