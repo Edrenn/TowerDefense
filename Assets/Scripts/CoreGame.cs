@@ -270,6 +270,11 @@ public class CoreGame : MonoBehaviour
     {
         PlayerPrefs.SetFloat(OptionManager.MUSICVOLUME_KEY, musicVolumeSlider.value);
         PlayerPrefs.SetFloat(OptionManager.SOUNDVOLUME_KEY, soundVolumeSlider.value);
+
+        foreach (var shooter in FindObjectsOfType<Shooter>())
+        {
+            shooter.SetShootVolume(soundVolumeSlider.value);
+        }
     }
     #endregion
 

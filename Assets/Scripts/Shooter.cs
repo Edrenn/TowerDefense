@@ -2,6 +2,7 @@
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Projectiles;
 using Assets.Scripts.Towers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ public class Shooter : MonoBehaviour, Upgradable
     [SerializeField] protected Projectile projectile;
     [SerializeField] private int damage;
     [SerializeField] protected float shootSpeed;
+    [SerializeField] private AudioSource audioSource;
     private float range;
     protected Tower parent;
 
     private void Start()
     {
+        SetShootVolume(PlayerPrefs.GetFloat(OptionManager.SOUNDVOLUME_KEY));
         parent = GetComponentInParent<Tower>();
         Animator animator = GetComponent<Animator>();
         if (animator)
@@ -92,6 +95,10 @@ public class Shooter : MonoBehaviour, Upgradable
     {
         if (currentTarget)
         {
+            if (audioSource != null)
+            {
+                PlayFireSound();
+            }
             Projectile proj = Instantiate(projectile, transform.position, Quaternion.identity);
             proj.SetTarget(currentTarget);
             proj.SetDamage(damage);
@@ -106,6 +113,16 @@ public class Shooter : MonoBehaviour, Upgradable
         {
             GetComponent<Animator>().SetBool("isTargetInSight", false);
         }
+    }
+
+    private void PlayFireSound()
+    {
+        audioSource.Play();
+    }
+
+    public void SetShootVolume(float _volume)
+    {
+        audioSource.volume = _volume;
     }
 
     public void InitDamage(int damage)

@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
                 isBossLevel = false,
                 Waves = new List<Wave>
                 {
-                    new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 1, timeBetweenSpawn = 0.5f}
+                    new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 10, timeBetweenSpawn = 0.5f}
                     //,new Wave() { enemyType = AttackerEnum.Farmer, nbEnemy = 25, timeBetweenSpawn = 0.5f}
                     //,new Wave() { enemyType = AttackerEnum.Ranger, nbEnemy = 20, timeBetweenSpawn = 2f }
                     //,new Wave() { enemyType = AttackerEnum.Knight, nbEnemy = 5, timeBetweenSpawn = 1 }
