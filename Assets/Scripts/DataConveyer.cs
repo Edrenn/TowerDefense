@@ -9,6 +9,7 @@ namespace Assets.Scripts
 {
     public class DataConveyer : MonoBehaviour
     {
+        public static DataConveyer instance;
         public LevelData currentLevelData { get; set; }
         public CoreGameData gameDatas { get; set; }
 
@@ -21,8 +22,14 @@ namespace Assets.Scripts
 
         public int lastLevelRemainingHP { get; set; }
 
-        private void Awake()
+
+        private void Start()
         {
+            if (DataConveyer.instance != null)
+            {
+                Destroy(this.gameObject);
+            }
+            instance = this;
             DontDestroyOnLoad(this);
         }
     }

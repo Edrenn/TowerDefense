@@ -52,6 +52,8 @@ public class CoreGame : MonoBehaviour
     // TEMP
     public Tower towerPrefab;
 
+    MusicManager musicManager;
+
     private void Awake()
     {
         currentDC = FindObjectOfType<DataConveyer>();
@@ -84,6 +86,9 @@ public class CoreGame : MonoBehaviour
         soundVolumeSlider.value = PlayerPrefs.GetFloat(OptionManager.SOUNDVOLUME_KEY);
         pauseScreen.SetActive(false);
         optionScreen.SetActive(false);
+
+        musicManager = FindObjectOfType<MusicManager>();
+        musicManager.LaunchGameSong();
     }
 
     private void Update()
@@ -109,6 +114,11 @@ public class CoreGame : MonoBehaviour
                 SetPauseOff();
             }
 
+        }
+
+        if (optionScreen.activeInHierarchy)
+        {
+            musicManager.currentAudioSource.volume = musicVolumeSlider.value;
         }
     }
 
@@ -265,6 +275,7 @@ public class CoreGame : MonoBehaviour
 
     public void OnWin()
     {
+        musicManager.LaunchWinSong();
         Time.timeScale = 1;
         Debug.Log("Show Victory Screen");
         FindObjectOfType<DataConveyer>().lastLevelRemainingHP = castleCurrentHP;
@@ -287,6 +298,7 @@ public class CoreGame : MonoBehaviour
                 dataConveyer.currentLevelData.currentScore = 1;
         }
     }
+
     public void SpawnerFinishedCall(Spawner spawner)
     {
         if (allSpawners == null)

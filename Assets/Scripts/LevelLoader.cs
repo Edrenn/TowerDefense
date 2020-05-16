@@ -89,6 +89,13 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene("LoseScreen");
     }
 
+    public void QuitCurrentLevel()
+    {
+        FindObjectOfType<MusicManager>().LaunchMenuSong();
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LevelSelectionScreen");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

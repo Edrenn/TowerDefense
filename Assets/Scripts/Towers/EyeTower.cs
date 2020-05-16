@@ -13,12 +13,6 @@ namespace Assets.Scripts.Towers
 
         private void Awake()
         {
-            levels = new List<TowerLevel>()
-            {
-                new TowerLevel(40,1,80),
-                new TowerLevel(60,1,100),
-                new TowerLevel()
-            };
             Tower currentTower = GetComponent<Tower>();
             if (currentTower)
             {

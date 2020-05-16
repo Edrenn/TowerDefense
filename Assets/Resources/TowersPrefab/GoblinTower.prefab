@@ -201,11 +201,8 @@ MonoBehaviour:
   boneSellPrice: 35
   towerName: GoblinTower
   range: 2
-  levels:
-  - experienceToUpgrade: 10
-    levelIndex: 0
-    upgradePrice: 50
-  experienceOnHit: 2
+  levels: []
+  experienceOnHit: 1
   towerSprite: {fileID: 4723107735738678597, guid: 0d52eaf5cb18a1f4c89b1304225a1402,
     type: 3}
   parentSpawner: {fileID: 0}
@@ -330,8 +327,8 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   projectile: {fileID: 2003314031358533093, guid: 8d1a4c7118e859c488b5011b5a7382c0,
     type: 3}
-  damage: 15
-  shootSpeed: 4.5
+  damage: 10
+  shootSpeed: 3
 --- !u!1 &7863233375373522449
 GameObject:
   m_ObjectHideFlags: 0

@@ -443,7 +443,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   projectile: {fileID: 6175616053478832158, guid: dbb402f1e047ccc468d1c0f0817ddfad,
     type: 3}
-  damage: 75
+  damage: 30
   shootSpeed: 2.25
 --- !u!1 &2929830236575423087
 GameObject:

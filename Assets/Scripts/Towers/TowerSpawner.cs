@@ -43,7 +43,6 @@ public class TowerSpawner : MonoBehaviour
         {
             GameObject gameObject = Instantiate(Btn);
             gameObject.GetComponent<BuyTowerButton>().SetTowerData(tower.towerName,tower.boneBuyPrice, tower.towerSprite, tower.range);
-            //gameObject.GetComponent<BuyTowerButton>().SetParent(this);
             gameObject.transform.SetParent(BuyInterface.transform, false);
         }
     }
@@ -51,6 +50,7 @@ public class TowerSpawner : MonoBehaviour
     private void SpawnTower(Tower towerToSpawn)
     {
         Tower currentTower = Instantiate(towerToSpawn, transform.position, Quaternion.identity) as Tower;
+        currentTower.levels = towerToSpawn.levels;
         currentTower.parentSpawner = this;
         this.gameObject.SetActive(false);
 

@@ -12,4 +12,6 @@ public class Wave
     public int nbEnemy;
 
     public AttackerEnum enemyType;
+
+    public float timeBetweenSpawn = 1;
 }

@@ -192,7 +192,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 2
 --- !u!114 &379441322105389054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   projectile: {fileID: 7179879497324081244, guid: 569f27d5a65696b4f8191cbb51f759fc,
     type: 3}
   damage: 0
-  shootSpeed: 0.6
+  shootSpeed: 1.3
   slowValue: 30
 --- !u!1 &898680295866719241
 GameObject:
@@ -523,7 +523,7 @@ MonoBehaviour:
   boneBuyPrice: 50
   boneSellPrice: 35
   towerName: MushroomTower
-  range: 3
+  range: 2
   levels:
   - experienceToUpgrade: 10
     levelIndex: 0

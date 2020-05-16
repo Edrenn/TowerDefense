@@ -97,7 +97,7 @@ public class Spawner : MonoBehaviour
                     Spawn(newAttacker);
                 }
                 spawnCount++;
-                yield return new WaitForSeconds(TEMP_timeBetweenSpawn);
+                yield return new WaitForSeconds(currentW.timeBetweenSpawn);
             }
             if ((allWaves.Count > 0 || bossWave != null) && isBossWave == false)
             {
